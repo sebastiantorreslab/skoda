@@ -1,6 +1,0 @@
-#spring:
-#  datasource:
-#    url: mysql://root:xzV1eLO25JBPfKieFFSS@containers-us-west-126.railway.app:5468/railway
-#    username: root
-#    password: xzV1eLO25JBPfKieFFSS
-#    name : railway
