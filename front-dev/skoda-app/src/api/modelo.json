@@ -1,0 +1,29 @@
+{
+  "linea": [
+    {
+      "skoda": [
+        "fabia",
+        "fabia2",
+        "fabia largo",
+        "favorit",
+        "felicia",
+        "octavia"
+      ],
+      "volkswagen": [
+        "amarok",
+        "bora",
+        "crafter",
+        "crossfox",
+        "fox",
+        "gol",
+        "golf",
+        "jetta",
+        "polo",
+        "tiguan",
+        "vento"
+      ],
+      "audi": [" A1", "A3", "S4", "A5", "Q3", "Q5", "RS"]
+    }
+  ],
+  "motor": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}

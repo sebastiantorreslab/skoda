@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0% auto;
+  padding: 0;
+  text-align: center;
+}
+
+div.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  gap: 1vw;
+  overflow: hidden;
+  width: 90%;
+  scroll-behavior: smooth;
+  background: linear-gradient(to bottom, #fbfbfb, #f4f4f4);
+}
+
+div.content {
+  margin: 0;
+}
+
+div.search-bar {
+  width: 90%;
+}

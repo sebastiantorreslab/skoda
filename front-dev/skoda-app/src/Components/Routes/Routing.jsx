@@ -1,0 +1,31 @@
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CreateProducts } from "../Operations/CreateProducts";
+import { CreateVehicles } from "../Operations/CreateVehicles";
+import { VehicleForm } from "../Pages/VehicleForm";
+import { NavBar } from "../Layout/NavBar";
+import { Servicios } from "../Pages/Servicios";
+import { CartContextProvider } from "../../Context/CartContext";
+import { ListaProductos } from "../Pages/ListaProductos";
+
+export const Routing = () => {
+  return (
+    <div>
+      <BrowserRouter>
+        <CartContextProvider>
+          <Routes>
+            <Route element={<NavBar />}>
+              <Route path="/" element={<VehicleForm />} />
+              <Route path="/form" element={<VehicleForm />} />
+              <Route path="/servicios" element={<Servicios />} />
+              <Route path="/lista" element={<ListaProductos />} />
+              <Route path="/create" element={<CreateProducts />} />
+              <Route path="/create/vehicle" element={<CreateVehicles />} />
+              <Route path="*" element={<h1>404 Not found</h1>} />
+            </Route>
+          </Routes>
+        </CartContextProvider>
+      </BrowserRouter>
+    </div>
+  );
+};
