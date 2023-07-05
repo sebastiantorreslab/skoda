@@ -74,7 +74,7 @@ export const Search = ({ vehiculo }) => {
 
   return (
     <div className="bar">
-      <Card className="car-select" style={{ width: "90%" }}>
+      <Card className="car-select" style={{ width: "70%" }}>
         <Card.Title>Vehículo seleccionado</Card.Title>
         <ListGroup variant="flush">
           <ListGroup.Item>
