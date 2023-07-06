@@ -1,3 +1,10 @@
 div.box {
-    background-color: aqua;
+  background-color: silver;
+  width: 200px;
+  height: 180px;
+}
+
+div.box img {
+  width: 100px;
+  height: 100px;
 }

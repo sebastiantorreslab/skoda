@@ -18,7 +18,7 @@ export const Search = ({ vehiculo }) => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const products = axios.get("http://localhost:8080/product/findAll");
+    const products = axios.get("http://100.20.92.101:8080/product/findAll");
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
   }, [isChange]);
 
@@ -131,8 +131,9 @@ export const Search = ({ vehiculo }) => {
                       {post.productBrand}
                     </Card.Text>
                     <Button
+                      className="btn"
                       variant="primary"
-                      active
+                      onSelect="active"
                       style={{ width: "auto" }}
                       onClick={() => addToCart(post)}
                     >
