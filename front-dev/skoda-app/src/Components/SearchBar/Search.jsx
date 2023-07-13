@@ -23,6 +23,7 @@ export const Search = ({ vehiculo }) => {
   }, [isChange]);
 
   const filtrarBusqueda = () => {
+    setIsChange(false);
     console.log("filtrando");
 
     let vehiculosFiltro = items
@@ -63,10 +64,6 @@ export const Search = ({ vehiculo }) => {
     });
     setItemSelected(filtrados);
   };
-
-  useEffect(() => {
-    setIsChange(false);
-  }, [filtrarBusqueda]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
