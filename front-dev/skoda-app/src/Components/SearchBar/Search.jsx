@@ -18,7 +18,7 @@ export const Search = ({ vehiculo }) => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const products = axios.get("http://100.20.92.101:8080/product/findAll");
+    const products =  axios.get("https://back-end-service-4d3a.onrender.com/product/findAll");
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
   }, [isChange]);
 
