@@ -31,10 +31,9 @@ export const Search = ({ vehiculo }) => {
     } catch (error) {
       setItems([]);
     }
-  }, [isChange]);
+  }, []);
 
   const filtrarBusqueda = () => {
-    setIsChange(true);
     console.log("filtrando");
 
     let vehiculosFiltro = items
