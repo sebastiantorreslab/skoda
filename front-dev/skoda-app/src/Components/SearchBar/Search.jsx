@@ -18,7 +18,9 @@ export const Search = ({ vehiculo }) => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const products =  axios.get("https://back-end-service-4d3a.onrender.com/product/findAll");
+    const products = axios.get(
+      "https://back-end-service-4d3a.onrender.com/product/findAll"
+    );
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
   }, [isChange]);
 
@@ -34,12 +36,8 @@ export const Search = ({ vehiculo }) => {
         if (
           product.vehicleSet.some(
             (vehicle) =>
-              vehicle.brand
-                .toLocaleLowerCase()
-                .includes(vehiculo.marca.toLocaleLowerCase()) &&
-              vehicle.carLine
-                .toLocaleLowerCase()
-                .includes(vehiculo.linea.toLocaleLowerCase()) &&
+              vehicle.brand.includes(vehiculo.marca.toLocaleLowerCase()) &&
+              vehicle.carLine.includes(vehiculo.linea.toLocaleLowerCase()) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
           )
