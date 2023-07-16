@@ -18,14 +18,23 @@ export const Search = ({ vehiculo }) => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const products = axios.get(
-      "https://back-end-service-4d3a.onrender.com/product/findAll"
-    );
-    products.then((res) => setItems(res.data)).catch((err) => console.log(err));
+    try {
+      const products = axios.get(
+        "https://back-end-service-4d3a.onrender.com/product/findAll",
+        {
+          method: "GET",
+        }
+      );
+      products
+        .then((res) => setItems(res.data))
+        .catch((err) => console.log(err));
+    } catch (error) {
+      setItems([]);
+    }
   }, [isChange]);
 
   const filtrarBusqueda = () => {
-    setIsChange(false);
+    setIsChange(true);
     console.log("filtrando");
 
     let vehiculosFiltro = items
@@ -34,14 +43,14 @@ export const Search = ({ vehiculo }) => {
       })
       .filter((product) => {
         if (
-          product.vehicleSet.map(
+          product.vehicleSet.some(
             (vehicle) =>
               vehicle.brand
                 .toLocaleLowerCase()
-                .value.includes(vehiculo.marca.toLocaleLowerCase()) &&
+                .value.includes(vehiculo.marca.toLocaleLowerCase().value) &&
               vehicle.carLine
                 .toLocaleLowerCase()
-                .value.includes(vehiculo.linea.toLocaleLowerCase()) &&
+                .value.includes(vehiculo.linea.toLocaleLowerCase().value) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
           )
@@ -77,13 +86,13 @@ export const Search = ({ vehiculo }) => {
         <Card.Title>Vehículo seleccionado</Card.Title>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <b>Marca:</b> {vehiculo.marca}
+            <b>Marca:</b> {vehiculo?.marca}
           </ListGroup.Item>
           <ListGroup.Item>
-            <b>Linea:</b> {vehiculo.linea}
+            <b>Linea:</b> {vehiculo?.linea}
           </ListGroup.Item>
           <ListGroup.Item>
-            <b>Modelo:</b> {vehiculo.modelo}
+            <b>Modelo:</b> {vehiculo?.modelo}
           </ListGroup.Item>
         </ListGroup>
       </Card>
