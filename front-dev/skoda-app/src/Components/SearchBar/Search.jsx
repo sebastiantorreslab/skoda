@@ -55,14 +55,11 @@ export const Search = ({ vehiculo }) => {
               .includes(vehiculo.marca?.toLocaleLowerCase()) &&
             vehicle.carLine
               ?.toLocaleLowerCase()
-              .includes(vehiculo.linea?.toLocaleLowerCase())
+              .includes(vehiculo.linea?.toLocaleLowerCase()) &&
+            Number(vehiculo?.model) >= Number(vehicle?.iniYear) &&
+            Number(vehiculo?.model) <= Number(vehicle?.finYear)
           ) {
-            if (
-              Number(vehiculo?.model) >= Number(vehicle?.iniYear) &&
-              Number(vehiculo?.model) <= Number(vehicle?.finYear)
-            ) {
-              return product;
-            }
+            return product;
           } else {
             console.log("producto no encontrado");
           }
