@@ -51,14 +51,15 @@ export const Search = ({ vehiculo }) => {
             console.log("null");
           } else if (
             vehicle.brand
-              ?.toLocaleLowerCase()
-              .includes(vehiculo.marca?.toLocaleLowerCase()) &&
+              .toLocaleLowerCase()
+              .includes(vehiculo.marca.toLocaleLowerCase()) &&
             vehicle.carLine
-              ?.toLocaleLowerCase()
-              .includes(vehiculo.linea?.toLocaleLowerCase()) &&
-            Number(vehiculo?.model) >= Number(vehicle?.iniYear) &&
-            Number(vehiculo?.model) <= Number(vehicle?.finYear)
+              .toLocaleLowerCase()
+              .includes(vehiculo.linea.toLocaleLowerCase()) &&
+            Number(vehiculo.model) >= Number(vehicle.iniYear) &&
+            Number(vehiculo.model) <= Number(vehicle.finYear)
           ) {
+            console.log(product);
             return product;
           } else {
             console.log("producto no encontrado");
@@ -66,6 +67,7 @@ export const Search = ({ vehiculo }) => {
         });
       });
     setProductos(vehiculosFiltro);
+    console.log("vehiculos filtro" + vehiculosFiltro);
 
     let filtrados = productos.filter((post) => {
       if (query === "") {
