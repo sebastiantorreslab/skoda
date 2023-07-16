@@ -38,10 +38,10 @@ export const Search = ({ vehiculo }) => {
             (vehicle) =>
               vehicle.brand
                 .toLocaleLowerCase()
-                .includes(vehiculo.marca.toLocaleLowerCase()) &&
+                .value.includes(vehiculo.marca.toLocaleLowerCase()) &&
               vehicle.carLine
                 .toLocaleLowerCase()
-                .includes(vehiculo.linea.toLocaleLowerCase()) &&
+                .value.includes(vehiculo.linea.toLocaleLowerCase()) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
           )
