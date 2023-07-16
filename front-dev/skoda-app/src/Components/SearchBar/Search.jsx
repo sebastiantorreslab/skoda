@@ -41,26 +41,29 @@ export const Search = ({ vehiculo }) => {
         return product;
       })
       .filter((product) => {
-        if (
-          product.vehicleSet.some(
-            (vehicle) =>
-              vehicle?.brand
-                .toLowerCase()
-                .includes(vehiculo.marca?.toLowerCase()) &&
-              vehicle?.carLine
-                .toLowerCase()
-                .includes(vehiculo.linea?.toLowerCase()) &&
-              Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
-              Number(vehiculo.modelo) <= Number(vehicle.finYear)
-          )
-        ) {
-          return product;
-        } else {
-          console.log(itemSelected);
-          console.log("no encontrado");
-        }
+        product.vehicleSet.map((vehicle) => {
+          if (
+            vehicle.brand == null &&
+            vehicle.model == null &&
+            vehicle.iniYear == null &&
+            vehicle.finYear == null
+          ) {
+            console.log("null");
+          } else if (
+            vehicle.brand.toLocaleLowerCase().includes(vehiculo.marca) &&
+            vehicle.carLine.toLocaleLowerCase().includes(vehiculo.linea)
+          ) {
+            if (
+              Number(vehiculo.model) >= vehicle.iniYear &&
+              Number(vehiculo.model) <= vehicle.finYear
+            ) {
+              return product;
+            }
+          } else {
+            console.log("producto no encontrado");
+          }
+        });
       });
-
     setProductos(vehiculosFiltro);
 
     let filtrados = productos.filter((post) => {
