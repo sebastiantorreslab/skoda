@@ -31,7 +31,7 @@ export const Search = ({ vehiculo }) => {
     } catch (error) {
       setItems([isChange]);
     }
-  }, []);
+  }, [isChange]);
 
   const filtrarBusqueda = () => {
     console.log("filtrando");
@@ -50,8 +50,8 @@ export const Search = ({ vehiculo }) => {
           ) {
             console.log("null");
           } else if (
-            vehicle?.brand.toLowerCase().includes(vehiculo.marca) &&
-            vehicle?.carLine.toLowerCase().includes(vehiculo.linea) &&
+            vehicle.brand.includes(vehiculo.marca) &&
+            vehicle.carLine.includes(vehiculo.linea) &&
             Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
             Number(vehiculo.model) <= Number(vehicle?.finYear)
           ) {
@@ -62,20 +62,21 @@ export const Search = ({ vehiculo }) => {
           }
         });
       });
+
     setProductos(vehiculosFiltro);
-    console.log("vehiculos filtro" + vehiculosFiltro);
-    console.log("productos" + productos);
 
     let filtrados = productos.filter((post) => {
       if (query === "") {
       } else if (
-        post.name?.toLocaleLowerCase().includes(query?.toLocaleLowerCase())
+        post.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
       ) {
         return post;
       } else {
+        console.log("no se encuentra producto");
       }
     });
     setItemSelected(filtrados);
+    setIsChange(true);
   };
 
   const handleSubmit = (e) => {
