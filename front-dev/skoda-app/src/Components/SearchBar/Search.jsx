@@ -44,12 +44,12 @@ export const Search = ({ vehiculo }) => {
         if (
           product.vehicleSet.some(
             (vehicle) =>
-              vehicle.brand
-                .toLocaleLowerCase()
-                .value.includes(vehiculo.marca.toLocaleLowerCase().value) &&
-              vehicle.carLine
-                .toLocaleLowerCase()
-                .value.includes(vehiculo.linea.toLocaleLowerCase().value) &&
+              vehicle?.brand
+                .toLowerCase()
+                .includes(vehiculo.marca?.toLowerCase()) &&
+              vehicle?.carLine
+                .toLowerCase()
+                .includes(vehiculo.linea?.toLowerCase()) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
           )
