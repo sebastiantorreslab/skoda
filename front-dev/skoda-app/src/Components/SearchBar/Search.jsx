@@ -62,13 +62,13 @@ export const Search = ({ vehiculo }) => {
             console.log(product);
             return product;
           } else {
-            console.log("vehiculos filtro" + vehiculosFiltro);
-            console.log("productos" + productos);
             console.log("producto no encontrado");
           }
         });
       });
     setProductos(vehiculosFiltro);
+    console.log("vehiculos filtro" + vehiculosFiltro);
+    console.log("productos" + productos);
 
     let filtrados = productos.filter((post) => {
       if (query === "") {
