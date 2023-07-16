@@ -34,10 +34,14 @@ export const Search = ({ vehiculo }) => {
       })
       .filter((product) => {
         if (
-          product.vehicleSet.some(
+          product.vehicleSet.map(
             (vehicle) =>
-              vehicle.brand.includes(vehiculo.marca.toLocaleLowerCase()) &&
-              vehicle.carLine.includes(vehiculo.linea.toLocaleLowerCase()) &&
+              vehicle.brand
+                .toLocaleLowerCase()
+                .includes(vehiculo.marca.toLocaleLowerCase()) &&
+              vehicle.carLine
+                .toLocaleLowerCase()
+                .includes(vehiculo.linea.toLocaleLowerCase()) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
           )
