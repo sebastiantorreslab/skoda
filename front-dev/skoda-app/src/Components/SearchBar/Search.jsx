@@ -50,8 +50,12 @@ export const Search = ({ vehiculo }) => {
           ) {
             console.log("null");
           } else if (
-            vehicle.brand.toUpper().includes(vehiculo.marca.toUpper()) &&
-            vehicle.carLine.toUpper().includes(vehiculo.linea.toUpper()) &&
+            vehicle.brand
+              .toLowerCase()
+              .includes(vehiculo.marca.toLowerCase()) &&
+            vehicle.carLine
+              .toLowerCase()
+              .includes(vehiculo.linea.toLowerCase()) &&
             Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
             Number(vehiculo.model) <= Number(vehicle?.finYear)
           ) {
