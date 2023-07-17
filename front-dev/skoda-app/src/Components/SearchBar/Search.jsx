@@ -41,7 +41,7 @@ export const Search = ({ vehiculo }) => {
         return product;
       })
       .filter((product) => {
-        product.vehicleSet.map((vehicle) => {
+        product.vehicleSet.some((vehicle) => {
           if (
             vehicle.brand == null &&
             vehicle.model == null &&
