@@ -31,7 +31,7 @@ export const Search = ({ vehiculo }) => {
     } catch (error) {
       setItems([isChange]);
     }
-  }, [isChange]);
+  }, []);
 
   const filtrarBusqueda = () => {
     console.log("filtrando");
@@ -50,8 +50,8 @@ export const Search = ({ vehiculo }) => {
           ) {
             console.log("null");
           } else if (
-            vehicle.brand.includes(vehiculo.marca) &&
-            vehicle.carLine.includes(vehiculo.linea) &&
+            vehicle.brand.toUpper().includes(vehiculo.marca.toUpper()) &&
+            vehicle.carLine.toUpper().includes(vehiculo.linea.toUpper()) &&
             Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
             Number(vehiculo.model) <= Number(vehicle?.finYear)
           ) {
