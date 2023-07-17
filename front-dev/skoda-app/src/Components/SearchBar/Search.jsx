@@ -29,7 +29,7 @@ export const Search = ({ vehiculo }) => {
         .then((res) => setItems(res.data))
         .catch((err) => console.log(err));
     } catch (error) {
-      setItems([isChange]);
+      setItems([]);
     }
   }, []);
 
