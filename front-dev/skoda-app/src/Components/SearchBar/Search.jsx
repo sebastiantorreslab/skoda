@@ -43,14 +43,13 @@ export const Search = ({ vehiculo }) => {
       .filter((product) => {
         product.vehicleSet.some((vehicle) => {
           if (
-            vehicle.brand == null &&
-            vehicle.model == null &&
-            vehicle.iniYear == null &&
-            vehicle.finYear == null
+            vehicle.brand != null ||
+            vehicle.model != null ||
+            vehicle.iniYear != null ||
+            vehicle.finYear != null
           ) {
-            console.log("null");
-          } else if (
-            vehicle.brand
+
+            vehicleSetehicle.brand
               .toLowerCase()
               .includes(vehiculo.marca.toLowerCase()) &&
             vehicle.carLine
@@ -58,9 +57,12 @@ export const Search = ({ vehiculo }) => {
               .includes(vehiculo.linea.toLowerCase()) &&
             Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
             Number(vehiculo.model) <= Number(vehicle?.finYear)
-          ) {
-            console.log(product);
+             
             return product;
+
+          } else if () {
+            console.log(product);
+            
           } else {
             console.log("producto no encontrado");
           }
