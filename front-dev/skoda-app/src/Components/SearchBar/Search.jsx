@@ -70,7 +70,7 @@ export const Search = ({ vehiculo }) => {
 
     setProductos(vehiculosFiltro);
 
-    let filtrados = productos.filter((post) => {
+    let filtrados = items.filter((post) => {
       if (query === "") {
       } else if (
         post.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
