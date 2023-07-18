@@ -55,8 +55,8 @@ export const Search = ({ vehiculo }) => {
               vehicle.carLine
                 .toLowerCase()
                 .includes(vehiculo.linea.toLowerCase()) &&
-              Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
-              Number(vehiculo.model) <= Number(vehicle?.finYear)
+              Number(vehiculo.model) >= Number(vehicle.iniYear) &&
+              Number(vehiculo.model) <= Number(vehicle.finYear)
             ) {
               return product;
             } else {
