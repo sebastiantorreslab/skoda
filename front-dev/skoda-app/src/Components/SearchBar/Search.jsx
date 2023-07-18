@@ -49,7 +49,8 @@ export const Search = ({ vehiculo }) => {
             vehicle.finYear != null
           ) {
 
-            vehicleSetehicle.brand
+            if(
+              vehicleSetehicle.brand
               .toLowerCase()
               .includes(vehiculo.marca.toLowerCase()) &&
             vehicle.carLine
@@ -57,11 +58,14 @@ export const Search = ({ vehiculo }) => {
               .includes(vehiculo.linea.toLowerCase()) &&
             Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
             Number(vehiculo.model) <= Number(vehicle?.finYear)
-             
-            return product;
+            ){
+
+               return product;
+            }
+           
 
           } else if () {
-            console.log(product);
+            console.log("nulo" + product);
             
           } else {
             console.log("producto no encontrado");
