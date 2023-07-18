@@ -45,8 +45,8 @@ export const Search = ({ vehiculo }) => {
           if (
             vehicle.brand != null &&
             vehicle.model != null &&
-            vehicle.iniYear != null &&
-            vehicle.finYear != null
+            vehicle.iniYear != 0 &&
+            vehicle.finYear != 0
           ) {
             if (
               vehicle.brand
