@@ -43,9 +43,9 @@ export const Search = ({ vehiculo }) => {
       .filter((product) => {
         product.vehicleSet.some((vehicle) => {
           if (
-            vehicle.brand != null ||
-            vehicle.model != null ||
-            vehicle.iniYear != null ||
+            vehicle.brand != null &&
+            vehicle.model != null &&
+            vehicle.iniYear != null &&
             vehicle.finYear != null
           ) {
             if (
