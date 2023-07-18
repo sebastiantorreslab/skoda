@@ -49,7 +49,7 @@ export const Search = ({ vehiculo }) => {
             vehicle.finYear != null
           ) {
             if (
-              vehicleSetehicle.brand
+              vehicle.brand
                 .toLowerCase()
                 .includes(vehiculo.marca.toLowerCase()) &&
               vehicle.carLine
