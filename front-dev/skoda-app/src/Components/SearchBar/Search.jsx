@@ -48,25 +48,20 @@ export const Search = ({ vehiculo }) => {
             vehicle.iniYear != null ||
             vehicle.finYear != null
           ) {
-
-            if(
+            if (
               vehicleSetehicle.brand
-              .toLowerCase()
-              .includes(vehiculo.marca.toLowerCase()) &&
-            vehicle.carLine
-              .toLowerCase()
-              .includes(vehiculo.linea.toLowerCase()) &&
-            Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
-            Number(vehiculo.model) <= Number(vehicle?.finYear)
-            ){
-
-               return product;
+                .toLowerCase()
+                .includes(vehiculo.marca.toLowerCase()) &&
+              vehicle.carLine
+                .toLowerCase()
+                .includes(vehiculo.linea.toLowerCase()) &&
+              Number(vehiculo.model) >= Number(vehicle?.iniYear) &&
+              Number(vehiculo.model) <= Number(vehicle?.finYear)
+            ) {
+              return product;
+            } else {
+              console.log("nine");
             }
-           
-
-          } else if () {
-            console.log("nulo" + product);
-            
           } else {
             console.log("producto no encontrado");
           }
