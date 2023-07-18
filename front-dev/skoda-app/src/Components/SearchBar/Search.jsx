@@ -29,11 +29,12 @@ export const Search = ({ vehiculo }) => {
         .then((res) => setItems(res.data))
         .catch((err) => console.log(err));
     } catch (error) {
-      setItems([]);
+      console.log(error);
     }
   }, []);
 
   const filtrarBusqueda = () => {
+    setIsChange(true);
     console.log("filtrando");
 
     let vehiculosFiltro = items
@@ -45,8 +46,8 @@ export const Search = ({ vehiculo }) => {
           if (
             vehicle.brand != null &&
             vehicle.model != null &&
-            vehicle.iniYear != 0 &&
-            vehicle.finYear != 0
+            vehicle.iniYear != null &&
+            vehicle.finYear != null
           ) {
             if (
               vehicle.brand
@@ -55,7 +56,7 @@ export const Search = ({ vehiculo }) => {
               vehicle.carLine
                 .toLowerCase()
                 .includes(vehiculo.linea.toLowerCase()) //&&
-             // Number(vehiculo.model) >= Number(vehicle.iniYear) &&
+              // Number(vehiculo.model) >= Number(vehicle.iniYear) &&
               //Number(vehiculo.model) <= Number(vehicle.finYear)
             ) {
               return product;
@@ -70,8 +71,9 @@ export const Search = ({ vehiculo }) => {
 
     setProductos(vehiculosFiltro);
 
-    let filtrados = items.filter((post) => {
+    let filtrados = productos.filter((post) => {
       if (query === "") {
+        console.log("empy");
       } else if (
         post.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
       ) {
@@ -81,7 +83,6 @@ export const Search = ({ vehiculo }) => {
       }
     });
     setItemSelected(filtrados);
-    setIsChange(true);
   };
 
   const handleSubmit = (e) => {
@@ -118,48 +119,47 @@ export const Search = ({ vehiculo }) => {
           <Button
             variant="outline-primary"
             id="button-addon2"
-            onClick={filtrarBusqueda}
+            onClick={filtrarBusqueda()}
           >
             Buscar
           </Button>
         </InputGroup>
       </div>
       <div className="body">
-        {itemSelected &&
-          itemSelected.map((post) => {
-            return (
-              <div className="content" key={post.id}>
-                <Card style={{ width: "16rem", height: "390px" }}>
-                  <Card.Img
-                    variant="top"
-                    src={post.img}
-                    alt="img"
-                    style={{ height: "50%" }}
-                  />
-                  <Card.Body>
-                    <Card.Title>{post.name}</Card.Title>
-                    <Card.Text>
-                      <b>Ref: </b>
-                      {post.reference}
-                    </Card.Text>
-                    <Card.Text>
-                      <b>Marca: </b>
-                      {post.productBrand}
-                    </Card.Text>
-                    <Button
-                      className="btn"
-                      variant="primary"
-                      onSelect="active"
-                      style={{ width: "auto" }}
-                      onClick={() => addToCart(post)}
-                    >
-                      Cotizar
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            );
-          })}
+        {items.map((post) => {
+          return (
+            <div className="content" key={post.id}>
+              <Card style={{ width: "16rem", height: "390px" }}>
+                <Card.Img
+                  variant="top"
+                  src={post.img}
+                  alt="img"
+                  style={{ height: "50%" }}
+                />
+                <Card.Body>
+                  <Card.Title>{post.name}</Card.Title>
+                  <Card.Text>
+                    <b>Ref: </b>
+                    {post.reference}
+                  </Card.Text>
+                  <Card.Text>
+                    <b>Marca: </b>
+                    {post.productBrand}
+                  </Card.Text>
+                  <Button
+                    className="btn"
+                    variant="primary"
+                    onSelect="active"
+                    style={{ width: "auto" }}
+                    onClick={() => addToCart(post)}
+                  >
+                    Cotizar
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })}
         <div className="container">
           {!query.length == 0 && itemSelected.length == 0 && (
             <h6>No hay referencias que coincidan con tu búsqueda</h6>
