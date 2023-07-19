@@ -95,13 +95,13 @@ export const Search = ({ vehiculo }) => {
         <Card.Title>Vehículo seleccionado</Card.Title>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <b>Marca:</b> {vehiculo?.marca}
+            <b>Marca:</b> {vehiculo.marca}
           </ListGroup.Item>
           <ListGroup.Item>
-            <b>Linea:</b> {vehiculo?.linea}
+            <b>Linea:</b> {vehiculo.linea}
           </ListGroup.Item>
           <ListGroup.Item>
-            <b>Modelo:</b> {vehiculo?.modelo}
+            <b>Modelo:</b> {vehiculo.modelo}
           </ListGroup.Item>
         </ListGroup>
       </Card>
@@ -126,7 +126,7 @@ export const Search = ({ vehiculo }) => {
         </InputGroup>
       </div>
       <div className="body">
-        {items.map((post) => {
+        {filtrados.map((post) => {
           return (
             <div className="content" key={post.id}>
               <Card style={{ width: "16rem", height: "390px" }}>
