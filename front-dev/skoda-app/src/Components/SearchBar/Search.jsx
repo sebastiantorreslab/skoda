@@ -43,6 +43,12 @@ export const Search = ({ vehiculo }) => {
             vehicle?.iniYear != null &&
             vehicle?.finYear != null
           ) {
+            console.log(
+              vehicle?.brand &&
+                vehicle?.carLine &&
+                vehicle?.iniYear &&
+                vehicle?.finYear
+            );
             return product;
           } else {
             console.log("not null allowed");
