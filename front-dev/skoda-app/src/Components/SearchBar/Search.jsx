@@ -20,7 +20,7 @@ export const Search = ({ vehiculo }) => {
   useEffect(() => {
     try {
       const products = axios.get(
-        "https://back-end-service-4d3a.onrender.com/product/findAll",
+        "https://back-end-service-4d3a.onrender.com/product/findAll"
       );
       products
         .then((res) => setItems(res.data))
@@ -28,62 +28,72 @@ export const Search = ({ vehiculo }) => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [isChange]);
 
   const filtrarBusqueda = () => {
-    setIsChange(true);
-    console.log("filtrando");
-
-    let vehiculosFiltro = items
+    let productosDisp = items
       .map((product) => {
         return product;
       })
       .filter((product) => {
-        product.vehicleSet.some((vehicle) => {
+        product.vehicleSet.map((vehicle) => {
           if (
-            vehicle.brand != null &&
-            vehicle.model != null &&
-            vehicle.iniYear != null &&
-            vehicle.finYear != null
+            vehicle?.brand != null &&
+            vehicle?.carLine != null &&
+            vehicle?.iniYear != null &&
+            vehicle?.finYear != null
           ) {
-            if (
-              vehicle?.brand
-                .toLowerCase()
-                .includes(vehiculo.marca?.toLowerCase()) &&
-              vehicle?.carLine
-                .toLowerCase()
-                .includes(vehiculo.linea?.toLowerCase()) &&
-              Number(vehiculo?.model) >= Number(vehicle?.iniYear) &&
-              Number(vehiculo?.model) <= Number(vehicle?.finYear)
-            ) {
-              return product;
-            } else {
-              console.log("nine");
-            }
+            return product;
           } else {
-            console.log("producto no encontrado");
+            console.log("not null allowed");
+            return false;
           }
         });
       });
 
-    setProductos(vehiculosFiltro);
+    setProductos(vehiculosDisp);
 
-    let filtrados = productos.filter((post) => {
+    let filtrados = productosDisp
+      .map((product) => {
+        return product;
+      })
+      .filter((product) => {
+        if (product) {
+          product.vehicleSet.some((vehicle) => {
+            if (
+              vehicle.brand?.toLocalLowerCase().includes(vehiculo?.marca) &&
+              vehicle.carLine?.toLocaleLowerCase().includes(vehiculo?.linea) &&
+              vehiculo.modelo >= Number(vehicle.iniYear) &&
+              vehiculo.modelo <= Number(vehicle.finYear)
+            ) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+
+          return product;
+        } else {
+          console.log("no se encontraron vehiculos relacionados");
+        }
+      });
+
+    setProductos(filtrados);
+
+    let busqueda = productos.filter((product) => {
       if (query === "") {
-        console.log("empy");
+        //if query is empty
       } else if (
-        post.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        product.name?.toLowerCase().includes(query?.toLowerCase()) ||
+        product.reference?.toLowerCase().includes(query?.toLowerCase()) ||
+        product.description?.toLowerCase().includes(query?.toLowerCase())
       ) {
-        return post;
-      } else {
-        console.log("no se encuentra producto");
+        //returns filtered array
+        return product;
       }
     });
-    setItemSelected(filtrados);
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    setItemSelected(busqueda);
   };
 
   return (
