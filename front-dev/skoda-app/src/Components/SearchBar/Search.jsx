@@ -51,7 +51,7 @@ export const Search = ({ vehiculo }) => {
         });
       });
 
-    setProductos(vehiculosDisp);
+    setProductos(productosDisp);
 
     let filtrados = productosDisp
       .map((product) => {
