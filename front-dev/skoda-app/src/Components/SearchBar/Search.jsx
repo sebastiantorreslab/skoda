@@ -33,6 +33,7 @@ export const Search = ({ vehiculo }) => {
   const filtrarBusqueda = () => {
     let productosDisp = items
       .map((product) => {
+        console.log(product)
         return product;
       })
       .filter((product) => {
