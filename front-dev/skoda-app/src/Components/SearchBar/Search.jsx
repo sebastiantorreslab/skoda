@@ -44,8 +44,8 @@ export const Search = ({ vehiculo }) => {
             vehicle?.finYear != null
           ) {
             console.log(
-              vehicle?.brand &&
-                vehicle?.carLine &&
+              vehicle.brand &&
+                vehicle.carLine &&
                 vehicle?.iniYear &&
                 vehicle?.finYear
             );
@@ -67,8 +67,14 @@ export const Search = ({ vehiculo }) => {
         if (product) {
           product.vehicleSet.some((vehicle) => {
             if (
-              vehicle.brand?.toLocalLowerCase().includes(vehiculo?.marca) &&
-              vehicle.carLine?.toLocaleLowerCase().includes(vehiculo?.linea) &&
+              vehicle.brand
+                ?.toLocalLowerCase()
+                .trim()
+                .includes(vehiculo?.trim().marca) &&
+              vehicle.carLine
+                ?.toLocaleLowerCase()
+                .trim()
+                .includes(vehiculo?.trim().linea) &&
               Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
               Number(vehiculo.modelo) <= Number(vehicle.finYear)
             ) {
@@ -90,10 +96,16 @@ export const Search = ({ vehiculo }) => {
       if (query === "") {
         //if query is empty
       } else if (
-        product.name?.toLowerCase().includes(query?.toLowerCase()) ||
-        product.reference?.toLowerCase().includes(query?.toLowerCase()) ||
-        product.description?.toLowerCase().includes(query?.toLowerCase())
+        product.name
+          ?.toLowerCase()
+          .trim()
+          .includes(query?.trim().toLowerCase()) ||
+        product.reference
+          ?.toLowerCase()
+          .includes(query?.trim().toLowerCase()) ||
+        product.description?.toLowerCase().includes(query?.trim().toLowerCase())
       ) {
+        console.log("busqueda Search.jsx" + product);
         //returns filtered array
         return product;
       }
