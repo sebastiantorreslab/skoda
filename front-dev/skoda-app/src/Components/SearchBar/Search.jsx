@@ -37,10 +37,12 @@ export const Search = ({ vehiculo }) => {
       })
       .filter((product) => {
         product.vehicleSet.map((vehicle) => {
+          console.log("------vehiculo-------");
           console.log(vehicle.brand);
           console.log(vehicle.carLine);
           console.log(vehicle.iniYear);
           console.log(vehicle.finYear);
+          console.log("----------------");
           if (
             vehicle?.brand != null &&
             vehicle?.carLine != null &&
