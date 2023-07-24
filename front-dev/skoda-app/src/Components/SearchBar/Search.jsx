@@ -37,18 +37,16 @@ export const Search = ({ vehiculo }) => {
       })
       .filter((product) => {
         product.vehicleSet.map((vehicle) => {
+          console.log(vehicle.brand);
+          console.log(vehicle.carLine);
+          console.log(vehicle.iniYear);
+          console.log(vehicle.finYear);
           if (
             vehicle?.brand != null &&
             vehicle?.carLine != null &&
             vehicle?.iniYear != null &&
             vehicle?.finYear != null
           ) {
-            console.log(
-              vehicle.brand &&
-                vehicle.carLine &&
-                vehicle?.iniYear &&
-                vehicle?.finYear
-            );
             return product;
           } else {
             console.log("not null allowed");
