@@ -94,6 +94,7 @@ export const Search = ({ vehiculo }) => {
     });
 
     setItemSelected(busqueda);
+    setIsChange(true);
   };
 
   return (
