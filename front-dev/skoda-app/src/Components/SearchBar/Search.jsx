@@ -21,9 +21,6 @@ export const Search = ({ vehiculo }) => {
     try {
       const products = axios.get(
         "https://back-end-service-4d3a.onrender.com/product/findAll",
-        {
-          method: "GET",
-        }
       );
       products
         .then((res) => setItems(res.data))
@@ -50,14 +47,14 @@ export const Search = ({ vehiculo }) => {
             vehicle.finYear != null
           ) {
             if (
-              vehicle.brand
+              vehicle?.brand
                 .toLowerCase()
-                .includes(vehiculo.marca.toLowerCase()) &&
-              vehicle.carLine
+                .includes(vehiculo.marca?.toLowerCase()) &&
+              vehicle?.carLine
                 .toLowerCase()
-                .includes(vehiculo.linea.toLowerCase()) //&&
-              // Number(vehiculo.model) >= Number(vehicle.iniYear) &&
-              //Number(vehiculo.model) <= Number(vehicle.finYear)
+                .includes(vehiculo.linea?.toLowerCase()) &&
+              Number(vehiculo?.model) >= Number(vehicle?.iniYear) &&
+              Number(vehiculo?.model) <= Number(vehicle?.finYear)
             ) {
               return product;
             } else {
@@ -119,14 +116,14 @@ export const Search = ({ vehiculo }) => {
           <Button
             variant="outline-primary"
             id="button-addon2"
-            onClick={filtrarBusqueda()}
+            onClick={filtrarBusqueda}
           >
             Buscar
           </Button>
         </InputGroup>
       </div>
       <div className="body">
-        {filtrados.map((post) => {
+        {itemSelected.map((post) => {
           return (
             <div className="content" key={post.id}>
               <Card style={{ width: "16rem", height: "390px" }}>
