@@ -69,8 +69,8 @@ export const Search = ({ vehiculo }) => {
             if (
               vehicle.brand?.toLocalLowerCase().includes(vehiculo?.marca) &&
               vehicle.carLine?.toLocaleLowerCase().includes(vehiculo?.linea) &&
-              vehiculo.modelo >= Number(vehicle.iniYear) &&
-              vehiculo.modelo <= Number(vehicle.finYear)
+              Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
+              Number(vehiculo.modelo) <= Number(vehicle.finYear)
             ) {
               return true;
             } else {
