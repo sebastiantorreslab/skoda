@@ -13,6 +13,7 @@ export const Search = ({ vehiculo }) => {
   const [items, setItems] = useState([]);
   const [isChange, setIsChange] = useState(false);
   const [itemSelected, setItemSelected] = useState([]);
+  const [filtrados, setFiltrados] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
   const { addToCart } = useContext(CartContext);
@@ -31,7 +32,7 @@ export const Search = ({ vehiculo }) => {
   }, []);
 
   const filtrarBusqueda = () => {
-    let productosDisp = items
+    items
       .map((product) => {
         console.log(product);
         return product;
@@ -44,7 +45,7 @@ export const Search = ({ vehiculo }) => {
             vehicle?.iniYear != null &&
             vehicle?.finYear != null
           ) {
-            return product;
+            setProductos({ ...productos, product });
           } else {
             console.log("not null allowed");
             return false;
@@ -52,12 +53,10 @@ export const Search = ({ vehiculo }) => {
         });
       });
 
-    setProductos(productosDisp);
-
-    console.log("productos sin nulos aquí")
+    console.log("productos sin nulos aquí");
     console.log(productos);
 
-    let filtrados = productosDisp.filter((product) => {
+    productos.filter((product) => {
       if (product) {
         product.vehicleSet.some((vehicle) => {
           console.log("vehicle" + vehicle);
@@ -73,7 +72,7 @@ export const Search = ({ vehiculo }) => {
             Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
             Number(vehiculo.modelo) <= Number(vehicle.finYear)
           ) {
-            return product;
+            setFiltrados({ ...filtrados, product });
           } else {
             return false;
           }
@@ -83,13 +82,10 @@ export const Search = ({ vehiculo }) => {
       }
     });
 
-    setProductos(filtrados);
-
-    console.log("filtrados aquí")
+    console.log("filtrados aquí");
     console.log(filtrados);
 
-    let busqueda = productos.filter((product) => {
-      console.log("product busqueda" + product);
+    filtrados.filter((product) => {
       if (query === "") {
         //if query is empty
       } else if (
@@ -102,13 +98,13 @@ export const Search = ({ vehiculo }) => {
           .includes(query?.trim().toLowerCase()) ||
         product.description?.toLowerCase().includes(query?.trim().toLowerCase())
       ) {
-        console.log("busqueda Search.jsx" + product);
+        setItemSelected({ itemSelected, product });
+        console.log("itemSelected" + itemSelected);
         //returns filtered array
-        return product;
       }
     });
-    setItemSelected(busqueda);
-    console.log("busqueda array")
+
+    console.log("busqueda array");
   };
 
   return (
