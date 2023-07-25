@@ -28,7 +28,7 @@ export const Search = ({ vehiculo }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [isChange]);
+  }, []);
 
   const filtrarBusqueda = () => {
     let productosDisp = items
@@ -65,6 +65,7 @@ export const Search = ({ vehiculo }) => {
     let filtrados = productosDisp.filter((product) => {
       if (product) {
         product.vehicleSet.some((vehicle) => {
+          console.log("vehicle" + vehicle);
           if (
             vehicle.brand
               ?.toLocalLowerCase()
@@ -107,9 +108,7 @@ export const Search = ({ vehiculo }) => {
         return product;
       }
     });
-
     setItemSelected(busqueda);
-    setIsChange(true);
   };
 
   return (
