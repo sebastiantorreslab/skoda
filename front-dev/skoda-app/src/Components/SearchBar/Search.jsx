@@ -62,36 +62,30 @@ export const Search = ({ vehiculo }) => {
 
     setProductos(productosDisp);
 
-    let filtrados = productosDisp
-      .map((product) => {
-        return product;
-      })
-      .filter((product) => {
-        if (product) {
-          product.vehicleSet.some((vehicle) => {
-            if (
-              vehicle.brand
-                ?.toLocalLowerCase()
-                .trim()
-                .includes(vehiculo?.trim().marca) &&
-              vehicle.carLine
-                ?.toLocaleLowerCase()
-                .trim()
-                .includes(vehiculo?.trim().linea) &&
-              Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
-              Number(vehiculo.modelo) <= Number(vehicle.finYear)
-            ) {
-              return true;
-            } else {
-              return false;
-            }
-          });
-
-          return product;
-        } else {
-          console.log("no se encontraron vehiculos relacionados");
-        }
-      });
+    let filtrados = productosDisp.filter((product) => {
+      if (product) {
+        product.vehicleSet.some((vehicle) => {
+          if (
+            vehicle.brand
+              ?.toLocalLowerCase()
+              .trim()
+              .includes(vehiculo?.trim().marca) &&
+            vehicle.carLine
+              ?.toLocaleLowerCase()
+              .trim()
+              .includes(vehiculo?.trim().linea) &&
+            Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
+            Number(vehiculo.modelo) <= Number(vehicle.finYear)
+          ) {
+            return product;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        console.log("no se encontraron vehiculos relacionados");
+      }
+    });
 
     setProductos(filtrados);
 
