@@ -58,9 +58,11 @@ export const Search = ({ vehiculo }) => {
         });
       });
 
-    console.log("productos" + productosDisp);
+   
 
     setProductos(productosDisp);
+
+    console.log("productos" + productosDisp);
 
     let filtrados = productosDisp.filter((product) => {
       if (product) {
