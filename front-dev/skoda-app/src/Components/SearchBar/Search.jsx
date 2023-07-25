@@ -13,103 +13,67 @@ export const Search = ({ vehiculo }) => {
   const [items, setItems] = useState([]);
   const [isChange, setIsChange] = useState(false);
   const [itemSelected, setItemSelected] = useState([]);
-  const [filtrados, setFiltrados] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    try {
-      const products = axios.get(
-        "https://back-end-service-4d3a.onrender.com/product/findAll"
-      );
-      products
-        .then((res) => setItems(res.data))
-        .catch((err) => console.log(err));
-
-      console.log(items);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    const products = axios.get(
+      "https://back-end-service-4d3a.onrender.com/product/findAll"
+    );
+    products.then((res) => setItems(res.data)).catch((err) => console.log(err));
+  }, [isChange]);
 
   const filtrarBusqueda = () => {
-    items
+    let filtroVh = items
       .map((product) => {
-        console.log("producto" + product);
         return product;
       })
       .filter((product) => {
-        product?.vehicleSet.map((vehicle) => {
-          if (
-            vehicle?.brand != null &&
-            vehicle?.carLine != null &&
-            vehicle?.iniYear != null &&
-            vehicle?.finYear != null
-          ) {
-            setProductos([{ ...productos, product }]);
-          } else {
-            console.log("not null allowed");
-            return false;
-          }
-        });
+        if (
+          product.vehicleSet.some((vehicle) => {
+            if (
+              vehicle.brand != null &&
+              vehicle.carLine != null &&
+              vehicle.iniYear != null &&
+              vehicle.finYear != null
+            ) {
+              vehicle.brand
+                .toLowerCase()
+                .includes(vehiculo.marca.toLowerCase()) &&
+                vehicle.carLine
+                  .toLowerCase()
+                  .includes(vehiculo.linea.toLowerCase()) &&
+                vehiculo.modelo >= vehicle.iniYear &&
+                vehiculo.modelo <= vehicle.finYear;
+              return true;
+            } else {
+              console.log("error");
+            }
+          })
+        ) {
+          return true;
+        } else {
+          console.log("no");
+        }
       });
 
-    console.log("productos sin nulos aquí");
-    console.log(productos);
+    setProductos(filtroVh);
+    console.log(filtroVh);
 
-    productos?.filter((product) => {
-      if (product) {
-        product.vehicleSet.some((vehicle) => {
-          // aquí se está rompiendo
-
-          console.log("vehicle" + vehicle);
-          if (
-            vehicle.brand
-              ?.toLocalLowerCase()
-              .trim()
-              .includes(vehiculo?.trim().marca) &&
-            vehicle.carLine
-              ?.toLocaleLowerCase()
-              .trim()
-              .includes(vehiculo?.trim().linea) &&
-            Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
-            Number(vehiculo.modelo) <= Number(vehicle.finYear)
-          ) {
-            setFiltrados([{ ...filtrados, product }]);
-          } else {
-            return false;
-          }
-        });
-      } else {
-        console.log("no se encontraron vehiculos relacionados");
-      }
-    });
-
-    console.log("filtrados aquí");
-    console.log(filtrados);
-
-    filtrados?.filter((product) => {
-      if (query === "") {
+    let filtrados = productos.filter((post) => {
+      if (query === " ") {
         //if query is empty
       } else if (
-        product.name
-          ?.toLowerCase()
-          .trim()
-          .includes(query?.trim().toLowerCase()) ||
-        product.reference
-          ?.toLowerCase()
-          .includes(query?.trim().toLowerCase()) ||
-        product.description?.toLowerCase().includes(query?.trim().toLowerCase())
+        post.name?.toLowerCase().includes(query.toLowerCase()) ||
+        post.reference?.toLowerCase().includes(query.toLowerCase()) ||
+        post.description?.toLowerCase().includes(query.toLowerCase())
       ) {
-        setItemSelected([{ itemSelected, product }]);
-        console.log("itemSelected");
-        console.log("itemSelected" + itemSelected);
-        //returns filtered array
+        return post;
       }
     });
 
-    console.log("busqueda array");
+    setItemSelected(filtrados);
   };
 
   return (
@@ -149,25 +113,25 @@ export const Search = ({ vehiculo }) => {
         </InputGroup>
       </div>
       <div className="body">
-        {itemSelected?.map((post) => {
+        {itemSelected.map((post) => {
           return (
-            <div className="content" key={post.id}>
+            <div className="content" key={post?.id}>
               <Card style={{ width: "16rem", height: "390px" }}>
                 <Card.Img
                   variant="top"
-                  src={post.img}
+                  src={post?.img}
                   alt="img"
                   style={{ height: "50%" }}
                 />
                 <Card.Body>
-                  <Card.Title>{post.name}</Card.Title>
+                  <Card.Title>{post?.name}</Card.Title>
                   <Card.Text>
                     <b>Ref: </b>
-                    {post.reference}
+                    {post?.reference}
                   </Card.Text>
                   <Card.Text>
                     <b>Marca: </b>
-                    {post.productBrand}
+                    {post?.productBrand}
                   </Card.Text>
                   <Button
                     className="btn"
