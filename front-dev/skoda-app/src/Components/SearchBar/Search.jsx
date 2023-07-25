@@ -45,7 +45,7 @@ export const Search = ({ vehiculo }) => {
             vehicle?.iniYear != null &&
             vehicle?.finYear != null
           ) {
-            setProductos({ ...productos, product });
+            setProductos([{ ...productos, product }]);
           } else {
             console.log("not null allowed");
             return false;
@@ -54,7 +54,7 @@ export const Search = ({ vehiculo }) => {
       });
 
     console.log("productos sin nulos aquí");
-    console.log([productos]);
+    console.log(productos);
 
     productos?.filter((product) => {
       if (product) {
@@ -72,7 +72,7 @@ export const Search = ({ vehiculo }) => {
             Number(vehiculo.modelo) >= Number(vehicle.iniYear) &&
             Number(vehiculo.modelo) <= Number(vehicle.finYear)
           ) {
-            setFiltrados({ ...filtrados, product });
+            setFiltrados([{ ...filtrados, product }]);
           } else {
             return false;
           }
@@ -98,7 +98,7 @@ export const Search = ({ vehiculo }) => {
           .includes(query?.trim().toLowerCase()) ||
         product.description?.toLowerCase().includes(query?.trim().toLowerCase())
       ) {
-        setItemSelected({ itemSelected, product });
+        setItemSelected([{ itemSelected, product }]);
         console.log("itemSelected");
         console.log("itemSelected" + itemSelected);
         //returns filtered array
