@@ -38,12 +38,6 @@ export const Search = ({ vehiculo }) => {
       })
       .filter((product) => {
         product.vehicleSet.map((vehicle) => {
-          console.log("------vehiculo-------");
-          console.log(vehicle.brand);
-          console.log(vehicle.carLine);
-          console.log(vehicle.iniYear);
-          console.log(vehicle.finYear);
-          console.log("----------------");
           if (
             vehicle?.brand != null &&
             vehicle?.carLine != null &&
@@ -57,8 +51,6 @@ export const Search = ({ vehiculo }) => {
           }
         });
       });
-
-   
 
     setProductos(productosDisp);
 
@@ -93,6 +85,7 @@ export const Search = ({ vehiculo }) => {
     setProductos(filtrados);
 
     let busqueda = productos.filter((product) => {
+      console.log("product busqueda" + product);
       if (query === "") {
         //if query is empty
       } else if (
