@@ -119,7 +119,7 @@ export const Search = ({ vehiculo }) => {
               <Card style={{ width: "16rem", height: "390px" }}>
                 <Card.Img
                   variant="top"
-                  src={post?.img}
+                  src={post.img}
                   alt="img"
                   style={{ height: "50%" }}
                 />
@@ -127,11 +127,11 @@ export const Search = ({ vehiculo }) => {
                   <Card.Title>{post?.name}</Card.Title>
                   <Card.Text>
                     <b>Ref: </b>
-                    {post?.reference}
+                    {post.reference}
                   </Card.Text>
                   <Card.Text>
                     <b>Marca: </b>
-                    {post?.productBrand}
+                    {post.productBrand}
                   </Card.Text>
                   <Button
                     className="btn"
