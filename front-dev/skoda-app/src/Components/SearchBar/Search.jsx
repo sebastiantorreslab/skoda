@@ -138,7 +138,7 @@ export const Search = ({ vehiculo }) => {
           <Button
             variant="outline-primary"
             id="button-addon2"
-            onClick={filtrarBusqueda}
+            onClick={()=>filtrarBusqueda}
           >
             Buscar
           </Button>
