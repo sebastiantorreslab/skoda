@@ -38,7 +38,7 @@ export const Search = ({ vehiculo }) => {
         return product;
       })
       .filter((product) => {
-        product.vehicleSet.map((vehicle) => {
+        product?.vehicleSet.map((vehicle) => {
           if (
             vehicle?.brand != null &&
             vehicle?.carLine != null &&
@@ -54,9 +54,9 @@ export const Search = ({ vehiculo }) => {
       });
 
     console.log("productos sin nulos aquí");
-    console.log(productos);
+    console.log([productos]);
 
-    productos.filter((product) => {
+    productos?.filter((product) => {
       if (product) {
         product.vehicleSet.some((vehicle) => {
           console.log("vehicle" + vehicle);
@@ -85,7 +85,7 @@ export const Search = ({ vehiculo }) => {
     console.log("filtrados aquí");
     console.log(filtrados);
 
-    filtrados.filter((product) => {
+    filtrados?.filter((product) => {
       if (query === "") {
         //if query is empty
       } else if (
@@ -99,6 +99,7 @@ export const Search = ({ vehiculo }) => {
         product.description?.toLowerCase().includes(query?.trim().toLowerCase())
       ) {
         setItemSelected({ itemSelected, product });
+        console.log("itemSelected");
         console.log("itemSelected" + itemSelected);
         //returns filtered array
       }
@@ -144,7 +145,7 @@ export const Search = ({ vehiculo }) => {
         </InputGroup>
       </div>
       <div className="body">
-        {itemSelected.map((post) => {
+        {itemSelected?.map((post) => {
           return (
             <div className="content" key={post.id}>
               <Card style={{ width: "16rem", height: "390px" }}>
