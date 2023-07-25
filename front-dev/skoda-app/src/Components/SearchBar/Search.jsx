@@ -54,7 +54,8 @@ export const Search = ({ vehiculo }) => {
 
     setProductos(productosDisp);
 
-    console.log("productos" + productosDisp);
+    console.log("productos sin nulos aquí")
+    console.log(productos);
 
     let filtrados = productosDisp.filter((product) => {
       if (product) {
@@ -84,6 +85,9 @@ export const Search = ({ vehiculo }) => {
 
     setProductos(filtrados);
 
+    console.log("filtrados aquí")
+    console.log(filtrados);
+
     let busqueda = productos.filter((product) => {
       console.log("product busqueda" + product);
       if (query === "") {
@@ -104,6 +108,7 @@ export const Search = ({ vehiculo }) => {
       }
     });
     setItemSelected(busqueda);
+    console.log("busqueda array")
   };
 
   return (
