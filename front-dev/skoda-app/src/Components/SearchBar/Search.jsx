@@ -33,7 +33,7 @@ export const Search = ({ vehiculo }) => {
   const filtrarBusqueda = () => {
     let productosDisp = items
       .map((product) => {
-        console.log(product)
+        console.log(product);
         return product;
       })
       .filter((product) => {
@@ -57,6 +57,8 @@ export const Search = ({ vehiculo }) => {
           }
         });
       });
+
+    console.log("productos" + productosDisp);
 
     setProductos(productosDisp);
 
