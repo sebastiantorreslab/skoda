@@ -26,6 +26,8 @@ export const Search = ({ vehiculo }) => {
       products
         .then((res) => setItems(res.data))
         .catch((err) => console.log(err));
+
+      console.log(items);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +36,7 @@ export const Search = ({ vehiculo }) => {
   const filtrarBusqueda = () => {
     items
       .map((product) => {
-        console.log(product);
+        console.log("producto" + product);
         return product;
       })
       .filter((product) => {
@@ -59,6 +61,8 @@ export const Search = ({ vehiculo }) => {
     productos?.filter((product) => {
       if (product) {
         product.vehicleSet.some((vehicle) => {
+          // aquí se está rompiendo
+
           console.log("vehicle" + vehicle);
           if (
             vehicle.brand
