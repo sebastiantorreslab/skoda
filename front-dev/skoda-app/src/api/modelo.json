@@ -1,29 +1,67 @@
 {
   "linea": [
     {
-      "skoda": [
-        "fabia",
-        "fabia2",
-        "fabia largo",
-        "favorit",
-        "felicia",
-        "octavia"
+      "Skoda": [
+        "Octavia",
+        "Felicia",
+        "Fabia",
+        "Favorit",
+        "Forman",
+        "Roomster",
+        "Octavia Hatchback",
+        "Octavia Combi",
+        "Superb Hatchback",
+        "Yeti (5L)",
+        "Superb Familiar"
       ],
-      "volkswagen": [
-        "amarok",
-        "bora",
-        "crafter",
-        "crossfox",
-        "fox",
-        "gol",
-        "golf",
-        "jetta",
-        "polo",
-        "tiguan",
-        "vento"
+      "Volkswagen": [
+        "Amarok",
+        "Bora",
+        "Bora Berlina",
+        "Bora Variant",
+        "Caddy",
+        "Corrado",
+        "Crafter",
+        "Cross",
+        "Cross Fox",
+        "Fox",
+        "Gol",
+        "Golf",
+        "Jetta",
+        "Lupo",
+        "New Beetle",
+        "New Golf",
+        "New Vento",
+        "Passat",
+        "Polo",
+        "Polo Sedan",
+        "Sharan",
+        "Space",
+        "Space Fox",
+        "Tiguan",
+        "Transporter",
+        "Vento",
+        "Voyage"
       ],
-      "audi": [" A1", "A3", "S4", "A5", "Q3", "Q5", "RS"]
+      "Audi": [
+        "A3",
+        "A3 Hatchback",
+        "A1 Hatchback",
+        "A1 Sportback",
+        "A1 Citycarver",
+        "A3 Cabrio",
+        "A4"
+      ],
+      "Seat": [
+        "Alhambra",
+        "Arosa",
+        "Cordoba",
+        "Ibiza",
+        "Leon",
+        "Leon St",
+        "Toledo",
+        "Toledo Iv"
+      ]
     }
-  ],
-  "motor": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  ]
 }
