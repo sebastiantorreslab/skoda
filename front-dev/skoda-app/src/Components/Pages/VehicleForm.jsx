@@ -11,21 +11,26 @@ import Row from "react-bootstrap/Row";
 import "./VehicleForm.css";
 
 export const VehicleForm = () => {
-  let marcas = ["skoda", "volkswagen", "audi"];
+  let marcas = ["Skoda", "Volkswagen", "Audi", "Seat"];
 
   let anios = [];
   const modeloSelect = () => {
-    for (let i = 1990; i <= 2023; i++) {
+    for (let i = 1987; i <= 2023; i++) {
       anios.push(i);
     }
   };
 
   modeloSelect();
 
-  const [marca, setMarca] = useState("skoda");
+  const [marca, setMarca] = useState("Skoda");
 
   const handleMarca = (marca) => {
-    if (marca === "skoda" || marca === "volkswagen" || marca === "audi") {
+    if (
+      marca === "Skoda" ||
+      marca === "Volkswagen" ||
+      marca === "Audi" ||
+      marca === "Seat"
+    ) {
       setMarca(marca);
     }
   };
