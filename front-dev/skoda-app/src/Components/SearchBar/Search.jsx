@@ -22,7 +22,7 @@ export const Search = ({ vehiculo }) => {
       "https://back-end-service-4d3a.onrender.com/product/findAll"
     );
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
-  }, [isChange]);
+  }, []);
 
   const filtrarBusqueda = () => {
     let filtroVh = items

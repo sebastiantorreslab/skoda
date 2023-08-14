@@ -26,10 +26,10 @@ export const VehicleForm = () => {
 
   const handleMarca = (marca) => {
     if (
-      marca === "Skoda" ||
-      marca === "Volkswagen" ||
-      marca === "Audi" ||
-      marca === "Seat"
+      marca == "Skoda" ||
+      marca =="Volkswagen" ||
+      marca == "Audi" ||
+      marca == "Seat"
     ) {
       setMarca(marca);
     }
