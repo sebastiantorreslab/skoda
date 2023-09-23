@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 export const NavBar = () => {
   return (
     <>
-      <Nav justify variant="tabs" defaultActiveKey="/form">
+      <Nav justify variant="tabs" >
         <Nav.Item>
           <Nav.Link href="/form">Buscador</Nav.Link>
         </Nav.Item>

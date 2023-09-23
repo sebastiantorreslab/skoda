@@ -11,18 +11,19 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 export const Search = ({ vehiculo }) => {
   const [items, setItems] = useState([]);
-  const [isChange, setIsChange] = useState(false);
   const [itemSelected, setItemSelected] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const products = axios.get(
-      "https://back-end-service-4d3a.onrender.com/product/findAll"
-    );
+    const products = axios.get("http://localhost:8080/product/findAll");
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
+    filtrarBusqueda();
   }, []);
+
+
+  
 
   const filtrarBusqueda = () => {
     let filtroVh = items
