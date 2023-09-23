@@ -1,13 +1,11 @@
-import React from "react";
 import lineasMarca from "../../api/modelo.json";
-import { Search } from "../SearchBar/Search";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
 import "./VehicleForm.css";
 
 export const VehicleForm = () => {
@@ -59,76 +57,77 @@ export const VehicleForm = () => {
 
   return (
     <div className="main">
-      <Container>
-        <Row>
-          <Col xs={6} md={4}>
-            <Image
-              style={{ width: "191px", height: "180px" }}
-              src="https://res.cloudinary.com/dyqwp7czx/image/upload/v1686118723/skoda_dhqzry.jpg"
-              rounded
-            />
-          </Col>
-        </Row>
-      </Container>
+      <br></br>
+      <img
+        style={{ width: "191px", height: "180px" }}
+        src="https://res.cloudinary.com/dyqwp7czx/image/upload/v1686118723/skoda_dhqzry.jpg"
+        rounded
+      />
       <br></br>
       <h5 style={{ margin: "auto" }}>
         Selecciona un vehículo para iniciar la búsqueda
       </h5>
       <br></br>
-
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-          <Form.Select
-            value={vehiculo.marca}
-            name=""
-            id=""
-            onChange={(e) => handleChangeVehiculo(e, "marca")}
-          >
-            <option defaultValue="disabled">
-              Seleccione marca del vehículo
-            </option>
-            {marcas.map((element, index) => (
-              <option key={index}>{element}</option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupPassword">
-          <Form.Select
-            value={vehiculo.linea}
-            name=""
-            id=""
-            onChange={(e) => handleChangeVehiculo(e, "linea")}
-          >
-            <option defaultValue="disabled">
-              Seleccione la línea del vehículo
-            </option>
-            {lineasRef.map((element) => (
-              <option key={element}>{element}</option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupPassword">
-          <Form.Select
-            value={vehiculo.modelo}
-            name=""
-            id=""
-            onChange={(e) => handleChangeVehiculo(e, "modelo")}
-          >
-            <option defaultValue="disabled">
-              Seleccione el modelo del vehículo
-            </option>
-
-            {anios.map((element) => {
-              return <option key={element}>{element}</option>;
-            })}
-          </Form.Select>
-        </Form.Group>
-        <Button type="submit" variant="outline-primary">
-          Seleccionar vehículo
-        </Button>{" "}
-      </Form>
-      <br></br>
-      {isSelected && <Search vehiculo={vehiculo} />}
+      <FormControl sx={{ m: 1, minWidth: 280 }}>
+        <InputLabel id="marca-simple-select-autowidth-label">
+          Marca vehículo
+        </InputLabel>
+        <Select
+          labelId="marca-simple-select-autowidth-label"
+          id="marca-simple-select-autowidth"
+          value=""
+          onChange=""
+          autoWidth
+          label="Marca vehículo"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Twenty</MenuItem>
+          <MenuItem value={21}>Twenty one</MenuItem>
+          <MenuItem value={22}>Twenty one and a half</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl sx={{ m: 1, minWidth: 280 }}>
+        <InputLabel id="linea-simple-select-autowidth-label">
+          Línea vehículo
+        </InputLabel>
+        <Select
+          labelId="linea-simple-select-autowidth-label"
+          id="linea-simple-select-autowidth"
+          value=""
+          onChange=""
+          autoWidth
+          label="Línea vehículo"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Twenty</MenuItem>
+          <MenuItem value={21}>Twenty one</MenuItem>
+          <MenuItem value={22}>Twenty one and a half</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl sx={{ m: 1, minWidth: 280 }}>
+        <InputLabel id="modelo-simple-select-autowidth-label">
+          Modelo vehículo
+        </InputLabel>
+        <Select
+          labelId="modelo-simple-select-autowidth-label"
+          id="modelo-simple-select-autowidth"
+          value=""
+          onChange=""
+          autoWidth
+          label="Modelo vehículo"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Twenty</MenuItem>
+          <MenuItem value={21}>Twenty one</MenuItem>
+          <MenuItem value={22}>Twenty one and a half</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 };

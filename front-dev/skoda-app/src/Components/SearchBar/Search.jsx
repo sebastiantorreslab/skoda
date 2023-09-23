@@ -3,11 +3,25 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import ListGroup from "react-bootstrap/ListGroup";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 export const Search = ({ vehiculo }) => {
   const [items, setItems] = useState([]);
@@ -21,9 +35,6 @@ export const Search = ({ vehiculo }) => {
     products.then((res) => setItems(res.data)).catch((err) => console.log(err));
     filtrarBusqueda();
   }, []);
-
-
-  
 
   const filtrarBusqueda = () => {
     let filtroVh = items
@@ -79,71 +90,60 @@ export const Search = ({ vehiculo }) => {
 
   return (
     <div className="bar">
-      <Card className="car-select" style={{ width: "70%" }}>
-        <Card.Title>Vehículo seleccionado</Card.Title>
-        <ListGroup variant="flush">
-          <ListGroup.Item>
-            <b>Marca:</b> {vehiculo.marca}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b>Linea:</b> {vehiculo.linea}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b>Modelo:</b> {vehiculo.modelo}
-          </ListGroup.Item>
-        </ListGroup>
-      </Card>
-      <br></br>
+      Vehículo seleccionado
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+      >
+        <Item>{vehiculo.marca}</Item>
+        <Item>{vehiculo.linea}</Item>
+        <Item>{vehiculo.modelo}</Item>
+      </Stack>
       <div className="search-bar">
-        <InputGroup className="mb-3">
-          <Form.Control
-            id="input-form"
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            required
+            id="outlined-required"
+            label="Required"
             value={query}
-            name="search"
-            type="text"
-            placeholder="Ingresa el repuesto a buscar"
             onChange={(e) => setQuery(e.target.value)}
           />
-          <Button
-            variant="outline-primary"
-            id="button-addon2"
-            onClick={filtrarBusqueda}
-          >
+          <Button variant="outlined" onClick={filtrarBusqueda}>
             Buscar
           </Button>
-        </InputGroup>
+        </Box>
       </div>
       <div className="body">
         {itemSelected.map((post) => {
           return (
             <div className="content" key={post?.id}>
-              <Card style={{ width: "16rem", height: "390px" }}>
-                <Card.Img
-                  variant="top"
-                  src={post.img}
-                  alt="img"
-                  style={{ height: "50%" }}
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  component="img"
+                  alt="green iguana"
+                  height="140"
+                  image={post.img}
                 />
-                <Card.Body>
-                  <Card.Title>{post?.name}</Card.Title>
-                  <Card.Text>
-                    <b>Ref: </b>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
                     {post.reference}
-                  </Card.Text>
-                  <Card.Text>
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
                     <b>Marca: </b>
                     {post.productBrand}
-                  </Card.Text>
-                  <Button
-                    className="btn"
-                    variant="primary"
-                    onSelect="active"
-                    style={{ width: "auto" }}
-                    onClick={() => addToCart(post)}
-                  >
-                    Cotizar
-                  </Button>
-                </Card.Body>
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Agregar a lista</Button>
+                  <Button size="small">Ver detalle</Button>
+                </CardActions>
               </Card>
             </div>
           );
@@ -157,11 +157,11 @@ export const Search = ({ vehiculo }) => {
           )}
         </div>
       </div>
-      <Link to="/lista">
-        <div className="button">
-          <button>Ver lista repuestos</button>
-        </div>
-      </Link>
+      <div className="button">
+        <Button variant="contained" href="/lista">
+          Ver lista repuestos
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,4 @@
 import { Routing } from "./Components/Routes/Routing";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
 import "./App.css";
 
 function App() {
