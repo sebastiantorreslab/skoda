@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
@@ -13,28 +14,21 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
-export const Search = ({ vehiculo }) => {
-  const [items, setItems] = useState([]);
+export const Search = ({ vehiculo, items }) => {
   const [itemSelected, setItemSelected] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
   const { addToCart } = useContext(CartContext);
-
-  useEffect(() => {
-    const products = axios.get("http://localhost:8080/product/findAll");
-    products.then((res) => setItems(res.data)).catch((err) => console.log(err));
-    filtrarBusqueda();
-  }, []);
 
   const filtrarBusqueda = () => {
     let filtroVh = items
@@ -89,21 +83,24 @@ export const Search = ({ vehiculo }) => {
   };
 
   return (
-    <div className="bar">
+    <div className="vehiculo-seleccionado">
       Vehículo seleccionado
+      <br>{/*  */}</br>
       <Stack
         direction={{ xs: "column", sm: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 4 }}
+        spacing={{ xs: 1, sm: 1, md: 1 }}
+        justifyContent="center"
       >
         <Item>{vehiculo.marca}</Item>
         <Item>{vehiculo.linea}</Item>
         <Item>{vehiculo.modelo}</Item>
       </Stack>
+      <br>{/*  */}</br>
       <div className="search-bar">
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { m: 1, width: "80%" },
           }}
           noValidate
           autoComplete="off"
@@ -115,7 +112,7 @@ export const Search = ({ vehiculo }) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <Button variant="outlined" onClick={filtrarBusqueda}>
+          <Button variant="contained" onClick={filtrarBusqueda}>
             Buscar
           </Button>
         </Box>
@@ -124,16 +121,16 @@ export const Search = ({ vehiculo }) => {
         {itemSelected.map((post) => {
           return (
             <div className="content" key={post?.id}>
-              <Card sx={{ maxWidth: 345 }}>
+              <Card sx={{ maxWidth: 250 }}>
                 <CardMedia
                   component="img"
-                  alt="green iguana"
+                  alt={post.name}
                   height="140"
                   image={post.img}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {post.reference}
+                    {post.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     <b>Marca: </b>

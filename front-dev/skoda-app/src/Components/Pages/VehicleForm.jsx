@@ -1,11 +1,15 @@
 import lineasMarca from "../../api/modelo.json";
 import * as React from "react";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useState } from "react";
+import axios from "axios";
+import { Search } from "../SearchBar/Search";
+import { useEffect, useState, useContext } from "react";
 import "./VehicleForm.css";
 
 export const VehicleForm = () => {
@@ -21,6 +25,7 @@ export const VehicleForm = () => {
   modeloSelect();
 
   const [marca, setMarca] = useState("Skoda");
+  const [items, setItems] = useState([]);
 
   const handleMarca = (marca) => {
     if (
@@ -33,7 +38,7 @@ export const VehicleForm = () => {
     }
   };
 
-  let lineasRef = lineasMarca.linea[0][marca];
+  let linea = lineasMarca.linea[0][marca];
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -42,6 +47,11 @@ export const VehicleForm = () => {
     linea: "",
     modelo: 0,
   });
+
+  useEffect(() => {
+    const products = axios.get("http://localhost:8080/product/findAll");
+    products.then((res) => setItems(res.data)).catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,17 +85,14 @@ export const VehicleForm = () => {
         <Select
           labelId="marca-simple-select-autowidth-label"
           id="marca-simple-select-autowidth"
-          value=""
-          onChange=""
+          value={vehiculo.marca}
+          onChange={(e) => handleChangeVehiculo(e, "marca")}
           autoWidth
           label="Marca vehículo"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Twenty</MenuItem>
-          <MenuItem value={21}>Twenty one</MenuItem>
-          <MenuItem value={22}>Twenty one and a half</MenuItem>
+          {marcas.map((marca) => {
+            return <MenuItem value={marca}>{marca}</MenuItem>;
+          })}
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 280 }}>
@@ -95,17 +102,17 @@ export const VehicleForm = () => {
         <Select
           labelId="linea-simple-select-autowidth-label"
           id="linea-simple-select-autowidth"
-          value=""
-          onChange=""
+          value={vehiculo.linea}
+          onChange={(e) => handleChangeVehiculo(e, "linea")}
           autoWidth
           label="Línea vehículo"
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Twenty</MenuItem>
-          <MenuItem value={21}>Twenty one</MenuItem>
-          <MenuItem value={22}>Twenty one and a half</MenuItem>
+          {linea.map((linea) => {
+            return <MenuItem value={linea}>{linea}</MenuItem>;
+          })}
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 280 }}>
@@ -115,19 +122,38 @@ export const VehicleForm = () => {
         <Select
           labelId="modelo-simple-select-autowidth-label"
           id="modelo-simple-select-autowidth"
-          value=""
-          onChange=""
+          value={vehiculo.modelo}
+          onChange={(e) => handleChangeVehiculo(e, "modelo")}
           autoWidth
           label="Modelo vehículo"
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Twenty</MenuItem>
-          <MenuItem value={21}>Twenty one</MenuItem>
-          <MenuItem value={22}>Twenty one and a half</MenuItem>
+          {anios.map((anio) => {
+            return <MenuItem value={anio}>{anio}</MenuItem>;
+          })}
         </Select>
       </FormControl>
+      <ButtonGroup
+        disableElevation
+        variant="contained"
+        aria-label="Disabled elevation buttons"
+      >
+        <Button
+          onClick={handleSubmit}
+          sx={{ m: 1, minWidth: 80 }}
+          size="medium"
+        >
+          Seleccionar vehículo
+        </Button>
+        <Button sx={{ m: 1, minWidth: 80 }} size="medium">
+          Buscar de nuevo
+        </Button>
+      </ButtonGroup>
+      <br>{/*  space for alert bar*/}</br>
+      {isSelected && <Search vehiculo={vehiculo} items={items} />}
+      {!isSelected && <span>Selecciona un vehículo para iniciar</span>}
     </div>
   );
 };
