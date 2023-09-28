@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
-import { Search } from "../SearchBar/Search";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { useEffect, useState, useContext } from "react";
 import "./VehicleForm.css";
 
@@ -55,7 +55,6 @@ export const VehicleForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setIsSelected(true);
   };
 
@@ -69,25 +68,26 @@ export const VehicleForm = () => {
     <div className="main">
       <br></br>
       <img
-        style={{ width: "191px", height: "180px" }}
+        style={{ width: "281px", height: "270px" }}
         src="https://res.cloudinary.com/dyqwp7czx/image/upload/v1686118723/skoda_dhqzry.jpg"
         rounded
       />
+
       <br></br>
-      <h5 style={{ margin: "auto" }}>
+      <span style={{ margin: "auto" }}>
         Selecciona un vehículo para iniciar la búsqueda
-      </h5>
+      </span>
+      <br></br>
       <br></br>
       <FormControl sx={{ m: 1, minWidth: 280 }}>
-        <InputLabel id="marca-simple-select-autowidth-label">
+        <InputLabel id="demo-simple-select-autowidth-label">
           Marca vehículo
         </InputLabel>
         <Select
-          labelId="marca-simple-select-autowidth-label"
-          id="marca-simple-select-autowidth"
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
           value={vehiculo.marca}
           onChange={(e) => handleChangeVehiculo(e, "marca")}
-          autoWidth
           label="Marca vehículo"
         >
           {marcas.map((marca) => {
@@ -107,9 +107,6 @@ export const VehicleForm = () => {
           autoWidth
           label="Línea vehículo"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           {linea.map((linea) => {
             return <MenuItem value={linea}>{linea}</MenuItem>;
           })}
@@ -127,33 +124,34 @@ export const VehicleForm = () => {
           autoWidth
           label="Modelo vehículo"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           {anios.map((anio) => {
             return <MenuItem value={anio}>{anio}</MenuItem>;
           })}
         </Select>
       </FormControl>
-      <ButtonGroup
-        disableElevation
-        variant="contained"
-        aria-label="Disabled elevation buttons"
-      >
-        <Button
-          onClick={handleSubmit}
-          sx={{ m: 1, minWidth: 80 }}
-          size="medium"
+      <div style={{ margin: "30px" }}>
+        <ButtonGroup
+          disableElevation
+          variant="contained"
+          aria-label="Disabled elevation buttons"
         >
-          Seleccionar vehículo
-        </Button>
-        <Button sx={{ m: 1, minWidth: 80 }} size="medium">
-          Buscar de nuevo
-        </Button>
-      </ButtonGroup>
+          <Button
+            onClick={handleSubmit}
+            sx={{ m: 1, minWidth: 80 }}
+            size="small"
+          >
+            Seleccionar vehículo
+          </Button>
+          <Button sx={{ m: 1, minWidth: 80 }} size="small">
+            Buscar de nuevo
+          </Button>
+        </ButtonGroup>
+      </div>
+      <br></br>
       <br>{/*  space for alert bar*/}</br>
-      {isSelected && <Search vehiculo={vehiculo} items={items} />}
+      {isSelected && <SearchBar vehiculo={vehiculo} items={items} />}
       {!isSelected && <span>Selecciona un vehículo para iniciar</span>}
+      <br></br>
     </div>
   );
 };

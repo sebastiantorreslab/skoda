@@ -13,9 +13,8 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import HandymanIcon from '@mui/icons-material/Handyman';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -124,7 +123,7 @@ export const NavBar = () => {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+          <AssignmentIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -136,7 +135,7 @@ export const NavBar = () => {
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
+            <HandymanIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -176,7 +175,10 @@ export const NavBar = () => {
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-            Autoskoda Repuestos
+              <Link to="/form" style={{textDecoration:"none", color:"white"}}>
+              Autoskoda Repuestos
+              </Link>
+            
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -194,8 +196,8 @@ export const NavBar = () => {
                 aria-label="show 4 new mails"
                 color="inherit"
               >
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
+                <Badge badgeContent={1} color="error">
+                <AssignmentIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -203,32 +205,9 @@ export const NavBar = () => {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
+                <Badge badgeContent={5} color="error">
+                  <HandymanIcon />
                 </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
               </IconButton>
             </Box>
           </Toolbar>

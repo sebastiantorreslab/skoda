@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import * as React from "react";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AlarmIcon from "@mui/icons-material/Alarm";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { green, pink } from "@mui/material/colors";
+import { blue, pink } from "@mui/material/colors";
 import Avatar from "@mui/material/Avatar";
 import "./ListaProductos.css";
 
@@ -18,7 +19,6 @@ export const ListaProductos = () => {
     <div>
       {cart.map((element) => {
         return (
-          
           <div className="box" key={element.id}>
             <p>{element.nombre}</p>
             <p>{element.linea}</p>
@@ -32,13 +32,13 @@ export const ListaProductos = () => {
           Eliminar
         </Button>
         <Button variant="contained" endIcon={<SendIcon />}>
-          Enviar cotización
+          Solicitar cotización
         </Button>
       </a>
       <Button onClick={clearCart} variant="contained">
-        Contained
+        Vaciar lista
       </Button>
-      <Avatar sx={{ bgcolor: green[500] }}>
+      <Avatar sx={{ bgcolor: blue[700] }}>
         <AssignmentIcon />
       </Avatar>
     </div>
