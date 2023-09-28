@@ -45,7 +45,7 @@ export const VehicleForm = () => {
   const [vehiculo, setVehiculo] = useState({
     marca: "",
     linea: "",
-    modelo: 0,
+    modelo: "",
   });
 
   useEffect(() => {
@@ -72,15 +72,19 @@ export const VehicleForm = () => {
         src="https://res.cloudinary.com/dyqwp7czx/image/upload/v1686118723/skoda_dhqzry.jpg"
         rounded
       />
+      <br></br>
 
       <br></br>
       <span style={{ margin: "auto" }}>
         Selecciona un vehículo para iniciar la búsqueda
       </span>
+
       <br></br>
-      <br></br>
-      <FormControl sx={{ m: 1, minWidth: 280 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">
+      <FormControl sx={{ m: 1, minWidth: 200 }}>
+        <InputLabel
+          id="demo-simple-select-autowidth-label"
+          style={{ width: "230px" }}
+        >
           Marca vehículo
         </InputLabel>
         <Select
@@ -89,14 +93,18 @@ export const VehicleForm = () => {
           value={vehiculo.marca}
           onChange={(e) => handleChangeVehiculo(e, "marca")}
           label="Marca vehículo"
+          style={{ width: "200px" }}
         >
           {marcas.map((marca) => {
             return <MenuItem value={marca}>{marca}</MenuItem>;
           })}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 280 }}>
-        <InputLabel id="linea-simple-select-autowidth-label">
+      <FormControl sx={{ m: 1, minWidth: 180 }}>
+        <InputLabel
+          id="linea-simple-select-autowidth-label"
+          style={{ width: "230px" }}
+        >
           Línea vehículo
         </InputLabel>
         <Select
@@ -106,14 +114,18 @@ export const VehicleForm = () => {
           onChange={(e) => handleChangeVehiculo(e, "linea")}
           autoWidth
           label="Línea vehículo"
+          style={{ width: "200px" }}
         >
           {linea.map((linea) => {
             return <MenuItem value={linea}>{linea}</MenuItem>;
           })}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 280 }}>
-        <InputLabel id="modelo-simple-select-autowidth-label">
+      <FormControl sx={{ m: 1, minWidth: 180 }}>
+        <InputLabel
+          id="linea-simple-select-autowidth-label"
+          style={{ width: "230px" }}
+        >
           Modelo vehículo
         </InputLabel>
         <Select
@@ -123,13 +135,14 @@ export const VehicleForm = () => {
           onChange={(e) => handleChangeVehiculo(e, "modelo")}
           autoWidth
           label="Modelo vehículo"
+          style={{ width: "200px" }}
         >
           {anios.map((anio) => {
             return <MenuItem value={anio}>{anio}</MenuItem>;
           })}
         </Select>
       </FormControl>
-      <div style={{ margin: "30px" }}>
+      <div>
         <ButtonGroup
           disableElevation
           variant="contained"
@@ -138,19 +151,18 @@ export const VehicleForm = () => {
           <Button
             onClick={handleSubmit}
             sx={{ m: 1, minWidth: 80 }}
-            size="small"
+            size="medium"
           >
             Seleccionar vehículo
           </Button>
-          <Button sx={{ m: 1, minWidth: 80 }} size="small">
+          <Button sx={{ m: 1, minWidth: 80 }} size="medium">
             Buscar de nuevo
           </Button>
         </ButtonGroup>
       </div>
-      <br></br>
-      <br>{/*  space for alert bar*/}</br>
+
       {isSelected && <SearchBar vehiculo={vehiculo} items={items} />}
-      {!isSelected && <span>Selecciona un vehículo para iniciar</span>}
+
       <br></br>
     </div>
   );

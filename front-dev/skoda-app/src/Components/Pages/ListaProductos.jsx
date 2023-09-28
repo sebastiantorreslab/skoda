@@ -10,6 +10,11 @@ import AlarmIcon from "@mui/icons-material/Alarm";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { blue, pink } from "@mui/material/colors";
 import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 import "./ListaProductos.css";
 
 export const ListaProductos = () => {
@@ -17,13 +22,32 @@ export const ListaProductos = () => {
 
   return (
     <div>
-      {cart.map((element) => {
+      {cart.map((post) => {
         return (
-          <div className="box" key={element.id}>
-            <p>{element.nombre}</p>
-            <p>{element.linea}</p>
-            <p>{element.modelo}</p>
-            <img src={element.img} alt={element.name}></img>
+          <div className="content" key={post?.id}>
+            <Card sx={{ maxWidth: 250 }}>
+              <CardMedia
+                component="img"
+                alt={post.name}
+                height="150"
+                image={post.img}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h7" component="div">
+                  {post.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <b>Referencia: </b>
+                  {post.reference}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" onClick={() => addToCart(post)}>
+                  Agregar a lista
+                </Button>
+                <Button size="small">Ver detalle</Button>
+              </CardActions>
+            </Card>
           </div>
         );
       })}
@@ -38,9 +62,6 @@ export const ListaProductos = () => {
       <Button onClick={clearCart} variant="contained">
         Vaciar lista
       </Button>
-      <Avatar sx={{ bgcolor: blue[700] }}>
-        <AssignmentIcon />
-      </Avatar>
     </div>
   );
 };

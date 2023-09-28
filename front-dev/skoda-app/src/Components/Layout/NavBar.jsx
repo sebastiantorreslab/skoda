@@ -14,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import HandymanIcon from '@mui/icons-material/Handyman';
+import HandymanIcon from "@mui/icons-material/Handyman";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,7 +57,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const NavBar = () => {
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -123,7 +122,7 @@ export const NavBar = () => {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-          <AssignmentIcon />
+            <AssignmentIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -160,7 +159,7 @@ export const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
@@ -168,17 +167,19 @@ export const NavBar = () => {
               sx={{ mr: 2 }}
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Typography
               variant="h6"
               noWrap
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              <Link to="/form" style={{textDecoration:"none", color:"white"}}>
-              Autoskoda Repuestos
+              <Link
+                to="/form"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Autoskoda Grupo
               </Link>
-            
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -197,7 +198,7 @@ export const NavBar = () => {
                 color="inherit"
               >
                 <Badge badgeContent={1} color="error">
-                <AssignmentIcon />
+                  <AssignmentIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -215,7 +216,7 @@ export const NavBar = () => {
         {renderMobileMenu}
         {renderMenu}
       </Box>
-      <Outlet/> 
+      <Outlet />
     </>
   );
 };
