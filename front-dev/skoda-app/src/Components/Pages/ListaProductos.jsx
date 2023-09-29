@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import * as React from "react";
@@ -7,24 +7,19 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Paper from "@mui/material/Paper";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
-import HandymanIcon from "@mui/icons-material/Handyman";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Stack from "@mui/material/Stack";
 import "./ListaProductos.css";
 
@@ -43,6 +38,17 @@ const Item = styled(Paper)(({ theme }) => ({
 export const ListaProductos = () => {
   const { cart, clearCart, deleteProduct } = useContext(CartContext);
   const [dense, setDense] = React.useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <div style={{ paddingTop: "30px" }}>
@@ -91,6 +97,13 @@ export const ListaProductos = () => {
                       primary={post?.name}
                       secondary={"Referencia:" + post?.reference}
                     />
+                    <IconButton aria-label="Restar" onClick={decreaseQuantity}>
+                      <RemoveIcon />
+                    </IconButton>
+                    <Typography variant="body1">{quantity}</Typography>
+                    <IconButton aria-label="Sumar" onClick={increaseQuantity}>
+                      <AddIcon />
+                    </IconButton>
                   </ListItem>
                   <Divider
                     variant="outset"
