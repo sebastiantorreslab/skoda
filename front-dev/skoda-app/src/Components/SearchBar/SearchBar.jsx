@@ -69,6 +69,7 @@ export const SearchBar = ({ vehiculo, items }) => {
   const [itemSelected, setItemSelected] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
+
   const { addToCart } = useContext(CartContext);
 
   const filtrarBusqueda = () => {
@@ -106,7 +107,6 @@ export const SearchBar = ({ vehiculo, items }) => {
       });
 
     setProductos(filtroVh);
-    console.log(filtroVh);
 
     let filtrados = productos.filter((post) => {
       if (query === " ") {
@@ -127,26 +127,22 @@ export const SearchBar = ({ vehiculo, items }) => {
     filtrarBusqueda();
   }, []);
 
-  console.log(productos);
-
-  console.log(itemSelected);
-
   return (
     <div className="searchBar">
       <div
-        className="vehiculo"
+        className="vehiculoBata"
         style={{
+          border: "3px solid white",
+          margin: "1px",
           position: "sticky",
           top: "0", // Cuando llega al principio de la página
           zIndex: 1000, // Opcional: Controla la elevación
           background: "white", // Opcional: Establece un fondo si es necesario
           borderRadius: "3px", // Opcional: Agrega esquinas redondeadas
           padding: "5px",
+          width: "100%",
         }}
       >
-        <span>Vehículo seleccionado </span>
-        <br>{/*  */}</br>
-
         <Search
           style={{
             position: "sticky",
@@ -163,13 +159,14 @@ export const SearchBar = ({ vehiculo, items }) => {
             inputProps={{ "aria-label": "search" }}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            style={{ flex: 1, paddingRight: "10px" }}
+            style={{ flex: 1, paddingRight: "2px" }}
           />
           <IconButton
             style={{
-              borderLeft: "1px solid #d3d3d3",
+              borderLeft: "1px solid #d1d1d1",
               position: "absolute",
-              right: "1px",
+              backgroundColor: "rgba(0, 0, 0,  0.10)",
+              right: "0px",
               width: "60px",
               height: "40px",
               padding: "5px",
@@ -186,16 +183,43 @@ export const SearchBar = ({ vehiculo, items }) => {
           justifyContent="center"
           style={{ margin: "10px" }}
         >
-          <Item style={{ background: "#f3f3f3" }}>{vehiculo.marca}</Item>
-          <Item style={{ background: "#f3f3f3" }}>{vehiculo.linea}</Item>
-          <Item style={{ background: "#f3f3f3" }}>{vehiculo.modelo}</Item>
+          <Item
+            style={{
+              background: "#f3f3f3",
+              borderRadius: "0",
+              width: "100px",
+              textAlign: "center",
+            }}
+          >
+            {vehiculo.marca}
+          </Item>
+          <Item
+            style={{
+              background: "#f3f3f3",
+              borderRadius: "0",
+              width: "100px",
+              textAlign: "center",
+            }}
+          >
+            {vehiculo.linea}
+          </Item>
+          <Item
+            style={{
+              background: "#f3f3f3",
+              borderRadius: "0",
+              width: "100px",
+              textAlign: "center",
+            }}
+          >
+            {vehiculo.modelo}
+          </Item>
         </Stack>
       </div>
       <div className="body">
         {itemSelected.map((post) => {
           return (
             <div className="content" key={post?.id}>
-              <Card sx={{ maxWidth: 250 }}>
+              <Card sx={{ maxWidth: 250, maxHeight: 280 }}>
                 <CardMedia
                   component="img"
                   alt={post.name}
@@ -221,16 +245,14 @@ export const SearchBar = ({ vehiculo, items }) => {
             </div>
           );
         })}
-        <div className="container">
-          {!query.length == 0 && itemSelected.length == 0 && (
-            <h6>No hay referencias que coincidan con tu búsqueda</h6>
-          )}
-        </div>
       </div>
+      <br></br>
       <div className="button">
-        <Button variant="contained" href="/lista" size="small">
-          Ver lista repuestos
-        </Button>
+        <Link to="/lista">
+          <Button variant="contained" size="small">
+            Ver lista repuestos
+          </Button>
+        </Link>
       </div>
     </div>
   );

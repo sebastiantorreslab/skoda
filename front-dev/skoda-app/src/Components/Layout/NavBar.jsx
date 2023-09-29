@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, NavLink } from "react-router-dom";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -122,11 +122,15 @@ export const NavBar = () => {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <AssignmentIcon />
+            <NavLink to="/lista">
+              <AssignmentIcon />
+            </NavLink>
           </Badge>
         </IconButton>
-        <p>Messages</p>
+
+        <p>Lista</p>
       </MenuItem>
+
       <MenuItem>
         <IconButton
           size="large"
@@ -198,7 +202,12 @@ export const NavBar = () => {
                 color="inherit"
               >
                 <Badge badgeContent={1} color="error">
-                  <AssignmentIcon />
+                  <NavLink
+                    to="/lista"
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    <AssignmentIcon />
+                  </NavLink>
                 </Badge>
               </IconButton>
               <IconButton
@@ -207,7 +216,12 @@ export const NavBar = () => {
                 color="inherit"
               >
                 <Badge badgeContent={5} color="error">
-                  <HandymanIcon />
+                  <NavLink
+                    to="/servicios"
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    <HandymanIcon />
+                  </NavLink>
                 </Badge>
               </IconButton>
             </Box>

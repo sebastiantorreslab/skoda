@@ -41,6 +41,9 @@ export const VehicleForm = () => {
   let linea = lineasMarca.linea[0][marca];
 
   const [isSelected, setIsSelected] = useState(false);
+  const [err, setErr] = useState(
+    "Selecciona un vehículo para iniciar la búsqueda"
+  );
 
   const [vehiculo, setVehiculo] = useState({
     marca: "",
@@ -55,7 +58,30 @@ export const VehicleForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSelected(true);
+    if (vehiculo.marca == "" || vehiculo.linea == "" || vehiculo.modelo == 0) {
+      if (
+        vehiculo.marca == "" &&
+        vehiculo.linea == "" &&
+        vehiculo.modelo == 0
+      ) {
+        setErr("Selecciona un vehículo para iniciar");
+      } else {
+        setErr("Selecciona marca, línea y modelo del vehículo");
+      }
+    } else if (
+      vehiculo.marca != "" &&
+      vehiculo.linea != "" &&
+      vehiculo.modelo != 0
+    ) {
+      setErr("");
+      setIsSelected(true);
+    }
+  };
+
+  const handleErr = () => {
+    setIsSelected(false);
+    setVehiculo({ vehiculo, marca: "", linea: "", modelo: "" });
+    setErr("Selecciona marca, línea y modelo del vehículo");
   };
 
   const handleChangeVehiculo = (e, propiedad) => {
@@ -75,9 +101,6 @@ export const VehicleForm = () => {
       <br></br>
 
       <br></br>
-      <span style={{ margin: "auto" }}>
-        Selecciona un vehículo para iniciar la búsqueda
-      </span>
 
       <br></br>
       <FormControl sx={{ m: 1, minWidth: 200 }}>
@@ -155,13 +178,18 @@ export const VehicleForm = () => {
           >
             Seleccionar vehículo
           </Button>
-          <Button sx={{ m: 1, minWidth: 80 }} size="medium">
+          <Button sx={{ m: 1, minWidth: 80 }} size="medium" onClick={handleErr}>
             Buscar de nuevo
           </Button>
         </ButtonGroup>
       </div>
-
-      {isSelected && <SearchBar vehiculo={vehiculo} items={items} />}
+      <br></br>
+      {isSelected && <span>Vehículo seleccionado </span>}
+      {isSelected && !err ? (
+        <SearchBar vehiculo={vehiculo} items={items} />
+      ) : (
+        <span>{err}</span>
+      )}
 
       <br></br>
     </div>
