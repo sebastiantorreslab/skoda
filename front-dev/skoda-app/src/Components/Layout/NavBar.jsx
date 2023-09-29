@@ -15,6 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import HandymanIcon from "@mui/icons-material/Handyman";
+import HomeIcon from "@mui/icons-material/Home";
 import { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 
@@ -188,6 +189,16 @@ export const NavBar = () => {
                 Autoskoda Grupo
               </Link>
             </Typography>
+            <IconButton size="large" aria-label="" color="inherit">
+              <Badge color="error">
+                <NavLink
+                  to="/Home"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <HomeIcon />
+                </NavLink>
+              </Badge>
+            </IconButton>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
