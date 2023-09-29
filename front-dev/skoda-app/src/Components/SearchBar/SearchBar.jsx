@@ -3,6 +3,7 @@ import { styled, alpha } from "@mui/material/styles";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
+import { ListaProductos } from "../Pages/ListaProductos";
 import InputBase from "@mui/material/InputBase";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -67,9 +68,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const SearchBar = ({ vehiculo, items }) => {
   const [itemSelected, setItemSelected] = useState([]);
+  const [isSelected, setIsSelected] = useState(false);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
-
   const { addToCart } = useContext(CartContext);
 
   const filtrarBusqueda = () => {

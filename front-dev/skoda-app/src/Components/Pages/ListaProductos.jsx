@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import Paper from "@mui/material/Paper";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -23,14 +24,24 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import Stack from "@mui/material/Stack";
 import "./ListaProductos.css";
 
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 export const ListaProductos = () => {
-  const { cart, clearCart } = useContext(CartContext);
+  const { cart, clearCart, deleteProduct } = useContext(CartContext);
   const [dense, setDense] = React.useState(false);
 
   return (
@@ -57,14 +68,20 @@ export const ListaProductos = () => {
                   <ListItem
                     secondaryAction={
                       <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
+                        <DeleteIcon onClick={() => deleteProduct(post)} />
                       </IconButton>
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar style={{ marginRight: "40px" }}>
-                        <FolderIcon />
-                      </Avatar>
+                      <Avatar
+                        alt={post?.name}
+                        src={post?.img}
+                        style={{
+                          marginRight: "25px",
+                          width: "55px",
+                          height: "55px",
+                        }}
+                      />
                     </ListItemAvatar>
                     <ListItemText
                       primaryTypographyProps={{ style: { textAlign: "left" } }}
@@ -110,7 +127,7 @@ export const ListaProductos = () => {
           </a>
 
           <Button
-            onClick={clearCart}
+            onClick={() => clearCart()}
             variant="contained"
             startIcon={<DeleteIcon />}
             style={{ margin: "5px" }}
@@ -118,11 +135,7 @@ export const ListaProductos = () => {
             Limpiar lista
           </Button>
           <Link to="/form">
-            <Button
-              onClick={clearCart}
-              variant="contained"
-              startIcon={<SearchIcon />}
-            >
+            <Button variant="contained" startIcon={<SearchIcon />}>
               buscar más
             </Button>
           </Link>

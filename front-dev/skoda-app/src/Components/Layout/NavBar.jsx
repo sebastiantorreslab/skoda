@@ -15,6 +15,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import HandymanIcon from "@mui/icons-material/Handyman";
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { cart } = useContext(CartContext);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -196,12 +199,11 @@ export const NavBar = () => {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
-              >
-                <Badge badgeContent={1} color="error">
+              <IconButton size="large" aria-label="" color="inherit">
+                <Badge
+                  badgeContent={cart.length > 0 ? cart.length : 0}
+                  color="error"
+                >
                   <NavLink
                     to="/lista"
                     style={{ textDecoration: "none", color: "white" }}

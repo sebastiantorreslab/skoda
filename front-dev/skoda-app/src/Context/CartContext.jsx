@@ -13,8 +13,13 @@ export const CartContextProvider = ({ children }) => {
     setCart([...cart, post]);
   };
 
-  const deleteProduct = () => {
-    console.log("se eliminó del carrito");
+  const deleteProduct = (post) => {
+    const updatedCart = cart.filter((item) => {
+      if (item.id !== post.id) {
+        return true;
+      }
+    });
+    setCart(updatedCart);
   };
 
   return (
