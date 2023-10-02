@@ -7,18 +7,28 @@ export const CartContextProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
+    sessionStorage.setItem("cart", JSON.stringify([]));
   };
 
   const addToCart = (post) => {
     const product = cart.find((item) => item?.id === post?.id);
     if (product) {
       setCart(
-        cart?.map((item) =>
-          item.id === post.id ? { ...post, cant: post.cant + 1 } : item
-        )
+        cart?.map((item) => {
+          if (item.id === post.id) {
+            setCart({ ...post, cant: post.cant + 1 });
+            sessionStorage.setItem(
+              "cart",
+              JSON.stringify({ ...post, cant: post.cant + 1 })
+            );
+          } else {
+            item;
+          }
+        })
       );
     } else {
       setCart([...cart, post]);
+      sessionStorage.setItem("cart", JSON.stringify([...cart, post]));
     }
   };
 
@@ -26,9 +36,17 @@ export const CartContextProvider = ({ children }) => {
     const product = cart.find((item) => item?.id === post?.id);
     if (product) {
       setCart(
-        cart?.map((item) =>
-          item.id === post.id ? { ...post, cant: post.cant - 1 } : item
-        )
+        cart?.map((item) => {
+          if (item.id === post.id) {
+            setCart({ ...post, cant: post.cant - 1 });
+            sessionStorage.setItem(
+              "cart",
+              JSON.stringify({ ...post, cant: post.cant - 1 })
+            );
+          } else {
+            item;
+          }
+        })
       );
     } else {
       deleteProduct(post);
@@ -42,12 +60,13 @@ export const CartContextProvider = ({ children }) => {
       }
     });
     setCart(updatedCart);
+    sessionStorage.setItem("cart", JSON.stringify([...cart, updatedCart]));
   };
 
   return (
     <CartContext.Provider
       value={{
-        cart: cart,
+        cart: JSON.parse(sessionStorage.getItem("cart")) || cart,
         clearCart: clearCart,
         addToCart: addToCart,
         removeFromCart: removeFromCart,
