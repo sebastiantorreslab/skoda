@@ -36,19 +36,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const ListaProductos = () => {
-  const { cart, clearCart, deleteProduct } = useContext(CartContext);
+  const { cart, addToCart, clearCart, removeFromCart, deleteProduct } =
+    useContext(CartContext);
   const [dense, setDense] = React.useState(false);
-  const [quantity, setQuantity] = useState(1);
-
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
 
   return (
     <div style={{ paddingTop: "30px" }}>
@@ -97,11 +87,17 @@ export const ListaProductos = () => {
                       primary={post?.name}
                       secondary={"Referencia:" + post?.reference}
                     />
-                    <IconButton aria-label="Restar" onClick={decreaseQuantity}>
+                    <IconButton
+                      aria-label="Restar"
+                      onClick={() => removeFromCart(post)}
+                    >
                       <RemoveIcon />
                     </IconButton>
-                    <Typography variant="body1">{quantity}</Typography>
-                    <IconButton aria-label="Sumar" onClick={increaseQuantity}>
+                    <Typography variant="body1">{post?.cant}</Typography>
+                    <IconButton
+                      aria-label="Sumar"
+                      onClick={() => addToCart(post)}
+                    >
                       <AddIcon />
                     </IconButton>
                   </ListItem>

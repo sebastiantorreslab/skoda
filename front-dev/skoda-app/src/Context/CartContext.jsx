@@ -10,7 +10,29 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const addToCart = (post) => {
-    setCart([...cart, post]);
+    const product = cart.find((item) => item?.id === post?.id);
+    if (product) {
+      setCart(
+        cart?.map((item) =>
+          item.id === post.id ? { ...post, cant: post.cant + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, post]);
+    }
+  };
+
+  const removeFromCart = (post) => {
+    const product = cart.find((item) => item?.id === post?.id);
+    if (product) {
+      setCart(
+        cart?.map((item) =>
+          item.id === post.id ? { ...post, cant: post.cant - 1 } : item
+        )
+      );
+    } else {
+      deleteProduct(post);
+    }
   };
 
   const deleteProduct = (post) => {
@@ -28,6 +50,7 @@ export const CartContextProvider = ({ children }) => {
         cart: cart,
         clearCart: clearCart,
         addToCart: addToCart,
+        removeFromCart: removeFromCart,
         deleteProduct: deleteProduct,
       }}
     >

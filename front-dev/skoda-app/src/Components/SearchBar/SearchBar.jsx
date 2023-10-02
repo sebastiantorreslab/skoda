@@ -3,7 +3,6 @@ import { styled, alpha } from "@mui/material/styles";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
-import { ListaProductos } from "../Pages/ListaProductos";
 import InputBase from "@mui/material/InputBase";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -16,6 +15,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -68,7 +69,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const SearchBar = ({ vehiculo, items }) => {
   const [itemSelected, setItemSelected] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
   const { addToCart } = useContext(CartContext);
@@ -220,7 +220,7 @@ export const SearchBar = ({ vehiculo, items }) => {
         {itemSelected.map((post) => {
           return (
             <div className="content" key={post?.id}>
-              <Card sx={{ maxWidth: 250, maxHeight: 280 }}>
+              <Card sx={{ maxWidth: 250, maxHeight: 280 }} key={post.id}>
                 <CardMedia
                   component="img"
                   alt={post.name}
@@ -234,6 +234,7 @@ export const SearchBar = ({ vehiculo, items }) => {
                   <Typography variant="body2" color="text.secondary">
                     <b>Referencia: </b>
                     {post.reference}
+                    {console.log(post)}
                   </Typography>
                 </CardContent>
                 <CardActions>
