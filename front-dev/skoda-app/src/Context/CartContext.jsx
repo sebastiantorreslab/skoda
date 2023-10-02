@@ -17,10 +17,6 @@ export const CartContextProvider = ({ children }) => {
         cart?.map((item) => {
           if (item.id === post.id) {
             setCart({ ...post, cant: post.cant + 1 });
-            sessionStorage.setItem(
-              "cart",
-              JSON.stringify({ ...post, cant: post.cant + 1 })
-            );
           } else {
             item;
           }
@@ -28,7 +24,6 @@ export const CartContextProvider = ({ children }) => {
       );
     } else {
       setCart([...cart, post]);
-      sessionStorage.setItem("cart", JSON.stringify([...cart, post]));
     }
   };
 
@@ -39,10 +34,6 @@ export const CartContextProvider = ({ children }) => {
         cart?.map((item) => {
           if (item.id === post.id) {
             setCart({ ...post, cant: post.cant - 1 });
-            sessionStorage.setItem(
-              "cart",
-              JSON.stringify({ ...post, cant: post.cant - 1 })
-            );
           } else {
             item;
           }
@@ -60,13 +51,12 @@ export const CartContextProvider = ({ children }) => {
       }
     });
     setCart(updatedCart);
-    sessionStorage.setItem("cart", JSON.stringify([...cart, updatedCart]));
   };
 
   return (
     <CartContext.Provider
       value={{
-        cart: JSON.parse(sessionStorage.getItem("cart")) || cart,
+        cart: cart,
         clearCart: clearCart,
         addToCart: addToCart,
         removeFromCart: removeFromCart,
