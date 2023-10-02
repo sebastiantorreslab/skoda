@@ -240,11 +240,6 @@ export const SearchBar = ({ vehiculo, items }) => {
                   <Button
                     size="small"
                     onClick={() => addToCart(post)}
-                    color={
-                      cart.some((item) => item.id === post.id)
-                        ? "success"
-                        : "contained"
-                    }
                   >
                     Agregar a lista
                   </Button>
