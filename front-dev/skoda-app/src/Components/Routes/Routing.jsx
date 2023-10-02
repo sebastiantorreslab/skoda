@@ -7,7 +7,9 @@ import { Home } from "../Pages/Home";
 import { NavBar } from "../Layout/NavBar";
 import { Servicios } from "../Pages/Servicios";
 import { CartContextProvider } from "../../Context/CartContext";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { ListaProductos } from "../Pages/ListaProductos";
+import { Producto } from "../Pages/Producto";
 
 export const Routing = () => {
   return (
@@ -19,8 +21,10 @@ export const Routing = () => {
               <Route path="/" element={<Home />} />
               <Route path="/Home" element={<Home />} />
               <Route path="/form" element={<VehicleForm />} />
+              <Route path="/search" element={<SearchBar />} />
               <Route path="/servicios" element={<Servicios />} />
               <Route path="/lista" element={<ListaProductos />} />
+              <Route path="/producto/:id" element={<Producto />} />
               <Route path="/create" element={<CreateProducts />} />
               <Route path="/create/vehicle" element={<CreateVehicles />} />
               <Route path="*" element={<h1>404 Not found</h1>} />

@@ -71,7 +71,7 @@ export const SearchBar = ({ vehiculo, items }) => {
   const [itemSelected, setItemSelected] = useState([]);
   const [productos, setProductos] = useState([]);
   const [query, setQuery] = useState("");
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cart } = useContext(CartContext);
 
   const filtrarBusqueda = () => {
     let filtroVh = items
@@ -234,14 +234,23 @@ export const SearchBar = ({ vehiculo, items }) => {
                   <Typography variant="body2" color="text.secondary">
                     <b>Referencia: </b>
                     {post.reference}
-                    {console.log(post)}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" onClick={() => addToCart(post)}>
+                  <Button
+                    size="small"
+                    onClick={() => addToCart(post)}
+                    color={
+                      cart.some((item) => item.id === post.id)
+                        ? "success"
+                        : "contained"
+                    }
+                  >
                     Agregar a lista
                   </Button>
-                  <Button size="small">Ver detalle</Button>
+                  <Link to={`/producto/${post.id}`}>
+                    <Button size="small">Ver detalle</Button>
+                  </Link>
                 </CardActions>
               </Card>
             </div>
