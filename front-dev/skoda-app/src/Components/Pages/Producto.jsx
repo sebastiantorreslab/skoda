@@ -70,9 +70,7 @@ export const Producto = () => {
             <RemoveIcon />
           </IconButton>
           <Typography variant="body1" style={{ padding: "7px" }}>
-            {cart?.map((item) =>
-              item.id === product.id ? item.cant : product.cant
-            )}
+  
           </Typography>
           <IconButton aria-label="Sumar" onClick={() => addToCart(product)}>
             <AddIcon />

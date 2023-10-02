@@ -7,20 +7,15 @@ export const CartContextProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    sessionStorage.setItem("cart", JSON.stringify([]));
   };
 
   const addToCart = (post) => {
     const product = cart.find((item) => item?.id === post?.id);
     if (product) {
       setCart(
-        cart?.map((item) => {
-          if (item.id === post.id) {
-            setCart({ ...post, cant: post.cant + 1 });
-          } else {
-            item;
-          }
-        })
+        cart?.map((item) =>
+          item.id === post.id ? { ...post, cant: post.cant + 1 } : item
+        )
       );
     } else {
       setCart([...cart, post]);
@@ -31,13 +26,9 @@ export const CartContextProvider = ({ children }) => {
     const product = cart.find((item) => item?.id === post?.id);
     if (product) {
       setCart(
-        cart?.map((item) => {
-          if (item.id === post.id) {
-            setCart({ ...post, cant: post.cant - 1 });
-          } else {
-            item;
-          }
-        })
+        cart?.map((item) =>
+          item.id === post.id ? { ...post, cant: post.cant - 1 } : item
+        )
       );
     } else {
       deleteProduct(post);
