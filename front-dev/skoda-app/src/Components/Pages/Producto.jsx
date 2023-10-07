@@ -69,9 +69,7 @@ export const Producto = () => {
           >
             <RemoveIcon />
           </IconButton>
-          <Typography variant="body1" style={{ padding: "7px" }}>
-  
-          </Typography>
+          <Typography variant="body1" style={{ padding: "7px" }}></Typography>
           <IconButton aria-label="Sumar" onClick={() => addToCart(product)}>
             <AddIcon />
           </IconButton>
