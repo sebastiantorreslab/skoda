@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 var phoneNbr = "573103722011";
 var telephoneId = "127211667149374";
 var bearerToken =
-  "EAAT1QwDAPQEBOwRcJwy2rjHvrUdzcDFiEhQV9ZAKDOhkB3k2ZBVva2iUuyTmlRRfbQ9VLEH17wU63rkcJgD6qUzBTTaNCfppOpplJAuUizzdqbFD3RJEd01wHEOAviGmjzuQ3Uun2OxpBkIBhUNYR4yB9MMxkGG4X6mSaGHeFsKFA5c6TMsxf5ITTA0gzK2Qgg2mMeVwGHkqU4MyNwyL8BdaqEj97ZA";
+  "EAAT1QwDAPQEBOx9ANXTmS5TRJ7LwQVZC2oIcjrVCZCXDXmvFKkSjzEgmETWZAqL9FkyzkZAxJICHZAf4nVn0TWhK8ynzAS7voZAKE96cQkUknZCLVDJ0z5TiL5Gg1rohKwBUhflCRhjcSOYrdtH7rKgPZCQQYWXvouQTQZCZCOQW2IpXNspUU4V57TZAWLWZCfVZAMeMolxpX6ElnLl1A6RG810QXKfr8UOEwRxsZD";
 
 var url = "https://graph.facebook.com/v17.0/" + telephoneId + "/messages";
 

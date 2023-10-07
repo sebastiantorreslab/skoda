@@ -39,6 +39,31 @@ export const ListaProductos = () => {
   const { cart, addToCart, clearCart, removeFromCart, deleteProduct } =
     useContext(CartContext);
   const [dense, setDense] = React.useState(false);
+  const whatsappphonenumber = 573103722011; /* 3186296550 */
+  const text_array = ["*Lista cotización:*\n"];
+  let text_encoded = "";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    for (let i = 0; i < cart.length; i++) {
+      const itemList = {
+        name: cart[i].name,
+        reference: cart[i].reference,
+        cant: cart[i].cant,
+      };
+
+      text_array.push(JSON.stringify(itemList) + "\n");
+    }
+
+    text_encoded = encodeURIComponent(text_array + "\n");
+    console.log(text_encoded);
+
+    var url = "https://wa.me/" + whatsappphonenumber + "/?text=" + text_encoded;
+
+    // Abrir la URL en una nueva ventana o pestaña del navegador
+    window.open(url);
+  };
 
   return (
     <div style={{ paddingTop: "30px" }}>
@@ -129,11 +154,13 @@ export const ListaProductos = () => {
         }}
       >
         <div>
-          <a href={"https://wa.me/3186296550"}>
-            <Button variant="contained" endIcon={<SendIcon />}>
-              Cotizar lista
-            </Button>
-          </a>
+          <Button
+            variant="contained"
+            endIcon={<SendIcon />}
+            onClick={(e) => handleSubmit(e)}
+          >
+            Cotizar lista
+          </Button>
 
           <Button
             onClick={() => clearCart()}
