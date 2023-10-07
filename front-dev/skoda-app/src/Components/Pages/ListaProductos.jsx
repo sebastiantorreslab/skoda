@@ -48,9 +48,9 @@ export const ListaProductos = () => {
 
     for (let i = 0; i < cart.length; i++) {
       const itemList = {
-        name: cart[i].name,
-        reference: cart[i].reference,
-        cant: cart[i].cant,
+        producto: cart[i].name,
+        referencia: cart[i].reference,
+        cantidad: cart[i].cant,
       };
 
       text_array.push(JSON.stringify(itemList) + "\n");

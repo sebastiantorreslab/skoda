@@ -11,6 +11,7 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -124,40 +125,14 @@ export const NavBar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size="large" aria-label="" color="inherit">
+          <Badge badgeContent={cart.length} color="error">
             <NavLink to="/lista">
               <AssignmentIcon />
             </NavLink>
           </Badge>
         </IconButton>
-
         <p>Lista</p>
-      </MenuItem>
-
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <HandymanIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
       </MenuItem>
     </Menu>
   );
@@ -167,15 +142,17 @@ export const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton> */}
+            {
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 1 }}
+              >
+                <MenuIcon />
+              </IconButton>
+            }
             <Typography
               variant="h6"
               noWrap
@@ -199,17 +176,18 @@ export const NavBar = () => {
                 </NavLink>
               </Badge>
             </IconButton>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+            <IconButton
+              size="large"
+              aria-label="Buscar"
+              color="inherit"
+              sx={{ display: { xs: "flex", sm: "none" } }}
+            >
+              <NavLink to="/Form" style={{ color: "white" }}>
+                <PageviewIcon fontSize="large" />
+              </NavLink>
+            </IconButton>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: "flex", md: "flex" } }}>
               <IconButton size="large" aria-label="" color="inherit">
                 <Badge
                   badgeContent={cart.length > 0 ? cart.length : 0}
@@ -223,11 +201,7 @@ export const NavBar = () => {
                   </NavLink>
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
+              <IconButton size="large" aria-label="" color="inherit">
                 <Badge badgeContent={5} color="error">
                   <NavLink
                     to="/servicios"
