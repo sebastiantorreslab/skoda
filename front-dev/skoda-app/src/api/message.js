@@ -1,9 +1,8 @@
 import fetch from "node-fetch";
 
-var phoneNbr = "573103722011";
-var telephoneId = "127211667149374";
-var bearerToken =
-  "EAAT1QwDAPQEBOx9ANXTmS5TRJ7LwQVZC2oIcjrVCZCXDXmvFKkSjzEgmETWZAqL9FkyzkZAxJICHZAf4nVn0TWhK8ynzAS7voZAKE96cQkUknZCLVDJ0z5TiL5Gg1rohKwBUhflCRhjcSOYrdtH7rKgPZCQQYWXvouQTQZCZCOQW2IpXNspUU4V57TZAWLWZCfVZAMeMolxpX6ElnLl1A6RG810QXKfr8UOEwRxsZD";
+var phoneNbr = "";
+var telephoneId = "";
+var bearerToken = "";
 
 var url = "https://graph.facebook.com/v17.0/" + telephoneId + "/messages";
 
