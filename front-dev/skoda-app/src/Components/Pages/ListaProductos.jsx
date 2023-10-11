@@ -53,11 +53,12 @@ export const ListaProductos = () => {
         cantidad: cart[i].cant,
       };
 
-      text_array.push(JSON.stringify(itemList) + "\n");
+      text_array.push(JSON.stringify(itemList).replace(/[""{}]/g, "") + "\n");
     }
 
-    text_encoded = encodeURIComponent(text_array + "\n");
-    console.log(text_encoded);
+    console.log(text_array);
+
+    text_encoded = encodeURIComponent(text_array).toWellFormed();
 
     var url = "https://wa.me/" + whatsappphonenumber + "/?text=" + text_encoded;
 
