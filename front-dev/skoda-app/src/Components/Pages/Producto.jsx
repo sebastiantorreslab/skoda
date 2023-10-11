@@ -72,6 +72,7 @@ export const Producto = () => {
           <Typography variant="body1" style={{ padding: "7px" }}>
             {cart.map((post) => {
               if (post.id === producto.id) {
+                console.log(post.cant);
                 console.log("---------------------------------");
                 console.log("producto", producto);
                 console.log("---------------------------------");

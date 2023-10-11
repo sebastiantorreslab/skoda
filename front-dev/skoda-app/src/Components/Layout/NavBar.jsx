@@ -162,8 +162,9 @@ export const NavBar = () => {
               <Link
                 to="/form"
                 style={{ textDecoration: "none", color: "white" }}
-              ></Link>
-              Autoskoda Grupo VW
+              >
+                Autoskoda Grupo VW
+              </Link>
             </Typography>
 
             <IconButton size="large" aria-label="" color="inherit">

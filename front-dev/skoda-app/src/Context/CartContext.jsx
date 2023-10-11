@@ -16,9 +16,7 @@ export const CartContextProvider = ({ children }) => {
       console.log("valid", product);
       setCart(
         cart?.map((item) =>
-          item.id === post.id
-            ? { ...post, cant: post.cant + 1 }
-            :item
+          item.id === post.id ? { ...post, cant: post.cant + 1 } : item
         )
       );
     } else {
