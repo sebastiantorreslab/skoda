@@ -148,7 +148,7 @@ export const NavBar = () => {
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                sx={{ mr: 1 }}
+                sx={{ display: { xs: "flex", sm: "none" } }}
               >
                 <MenuIcon />
               </IconButton>
@@ -157,15 +157,15 @@ export const NavBar = () => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ display: { xs: "none", sm: "block" }, marginRight:60 }}
             >
               <Link
                 to="/form"
                 style={{ textDecoration: "none", color: "white" }}
-              >
-                Autoskoda Grupo
-              </Link>
+              ></Link>
+              Autoskoda Grupo VW
             </Typography>
+      
             <IconButton size="large" aria-label="" color="inherit">
               <Badge color="error">
                 <NavLink

@@ -18,7 +18,7 @@ export const Routing = () => {
         <CartContextProvider>
           <Routes>
             <Route element={<NavBar />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<VehicleForm />} />
               <Route path="/Home" element={<Home />} />
               <Route path="/form" element={<VehicleForm />} />
               <Route path="/search" element={<SearchBar />} />
