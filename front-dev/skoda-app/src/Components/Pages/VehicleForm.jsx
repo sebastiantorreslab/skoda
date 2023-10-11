@@ -46,9 +46,9 @@ export const VehicleForm = () => {
   );
 
   const [vehiculo, setVehiculo] = useState({
-    marca: "",
-    linea: "",
-    modelo: "",
+    marca: localStorage.getItem("marca") || "",
+    linea: localStorage.getItem("linea") || "",
+    modelo: localStorage.getItem("modelo") || "",
   });
 
   useEffect(() => {
@@ -81,12 +81,16 @@ export const VehicleForm = () => {
   const handleErr = () => {
     setIsSelected(false);
     setVehiculo({ vehiculo, marca: "", linea: "", modelo: "" });
+    localStorage.setItem("marca", "");
+    localStorage.setItem("linea", "");
+    localStorage.setItem("modelo", "");
     setErr("Selecciona marca, línea y modelo del vehículo");
   };
 
   const handleChangeVehiculo = (e, propiedad) => {
     setIsSelected(false);
     setVehiculo({ ...vehiculo, [propiedad]: e.target.value });
+    localStorage.setItem([propiedad], e.target.value);
     handleMarca(e.target.value);
   };
 
@@ -170,11 +174,12 @@ export const VehicleForm = () => {
           disableElevation
           variant="contained"
           aria-label="Disabled elevation buttons"
+          direction={{ sx: "column", sm: "column" }}
         >
           <Button
             onClick={handleSubmit}
             sx={{ m: 1, minWidth: 80 }}
-            size="medium"
+            size="small"
           >
             Seleccionar vehículo
           </Button>

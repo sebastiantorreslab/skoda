@@ -89,7 +89,16 @@ export const ListaProductos = () => {
       />
       {cart.map((post) => {
         return (
-          <Box sx={{ flexGrow: 1, maxWidth: "40%" }}>
+          <Box
+            sx={{
+              maxWidth: {
+                xs: "100%",
+                sm: "65%",
+                md: "45%",
+              },
+              flexGrow: 1,
+            }}
+          >
             <Grid item xs={12} md={6}>
               <Demo>
                 <List dense={dense}>

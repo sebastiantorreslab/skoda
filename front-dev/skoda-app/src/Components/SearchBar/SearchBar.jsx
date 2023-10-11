@@ -179,7 +179,7 @@ export const SearchBar = ({ vehiculo, items }) => {
           </IconButton>
         </Search>
         <Stack
-          direction={{ xs: "column", sm: "row" }}
+          direction={{ xs: "row", sm: "row" }}
           spacing={{ xs: 1, sm: 1, md: 1 }}
           justifyContent="center"
           style={{ margin: "10px" }}
@@ -220,7 +220,10 @@ export const SearchBar = ({ vehiculo, items }) => {
         {itemSelected.map((post) => {
           return (
             <div className="content" key={post?.id}>
-              <Card sx={{ maxWidth: 250, maxHeight: 280 }} key={post.id}>
+              <Card
+                sx={{ maxWidth: 250, maxHeight: 280, minWidth: 250 }}
+                key={post.id}
+              >
                 <CardMedia
                   component="img"
                   alt={post.name}
