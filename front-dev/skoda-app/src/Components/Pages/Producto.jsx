@@ -19,14 +19,14 @@ import "./Producto.css";
 import axios from "axios";
 
 export const Producto = () => {
-  const [product, setProduct] = useState([]);
+  const [producto, setProducto] = useState([]);
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
   const { id } = useParams();
 
   useEffect(() => {
     const products = axios.get(`http://localhost:8080/product/findById/${id}`);
     products
-      .then((res) => setProduct(res.data))
+      .then((res) => setProducto(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -34,26 +34,26 @@ export const Producto = () => {
     <div>
       <Card
         sx={{ maxWidth: 360, maxHeight: 480 }}
-        key={product.id}
+        key={producto.id}
         style={{ marginTop: "50px", alignItems: "center" }}
       >
         <CardMedia
           component="img"
-          alt={product.name}
+          alt={producto.name}
           height="210"
-          image={product.img}
+          image={producto.img}
         />
         <CardContent>
           <Typography gutterBottom variant="h7" component="div">
-            {product.name}
+            {producto.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <b>Referencia: </b>
-            {product.reference}
+            {producto.reference}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <b>Descripción: </b>
-            {product.description}
+            {producto.description}
           </Typography>
         </CardContent>
         <div
@@ -65,12 +65,21 @@ export const Producto = () => {
         >
           <IconButton
             aria-label="Restar"
-            onClick={() => removeFromCart(product)}
+            onClick={() => removeFromCart(producto)}
           >
             <RemoveIcon />
           </IconButton>
-          <Typography variant="body1" style={{ padding: "7px" }}></Typography>
-          <IconButton aria-label="Sumar" onClick={() => addToCart(product)}>
+          <Typography variant="body1" style={{ padding: "7px" }}>
+            {cart.map((post) => {
+              if (post.id === producto.id) {
+                console.log("---------------------------------");
+                console.log("producto", producto);
+                console.log("---------------------------------");
+                console.log("carrito", post);
+              }
+            })}
+          </Typography>
+          <IconButton aria-label="Sumar" onClick={() => addToCart(producto)}>
             <AddIcon />
           </IconButton>
         </div>
@@ -82,7 +91,7 @@ export const Producto = () => {
               justifyContent: "center",
             }}
           >
-            <Button size="small" onClick={() => addToCart(product)}>
+            <Button size="small" onClick={() => addToCart(producto)}>
               Agregar a lista
             </Button>
             <Link to="/form">

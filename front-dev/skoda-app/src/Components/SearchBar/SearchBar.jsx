@@ -237,15 +237,12 @@ export const SearchBar = ({ vehiculo, items }) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button
-                    size="small"
-                    onClick={() => addToCart(post)}
-                  >
+                  <Button size="small" onClick={() => addToCart(post)}>
                     Agregar a lista
                   </Button>
-                  <Link to={`/producto/${post.id}`}>
+                  {/*  <Link to={`/producto/${post.id}`}>
                     <Button size="small">Ver detalle</Button>
-                  </Link>
+                  </Link> */}
                 </CardActions>
               </Card>
             </div>

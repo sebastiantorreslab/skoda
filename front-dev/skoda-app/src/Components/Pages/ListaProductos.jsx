@@ -39,6 +39,7 @@ export const ListaProductos = () => {
   const { cart, addToCart, clearCart, removeFromCart, deleteProduct } =
     useContext(CartContext);
   const [dense, setDense] = React.useState(false);
+  const [err, setErr] = useState("");
   const whatsappphonenumber = 573103722011; /* 3186296550 */
   const text_array = ["*Lista cotización:*\n"];
   let text_encoded = "";
@@ -46,24 +47,29 @@ export const ListaProductos = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    for (let i = 0; i < cart.length; i++) {
-      const itemList = {
-        producto: cart[i].name,
-        referencia: cart[i].reference,
-        cantidad: cart[i].cant,
-      };
+    if (cart != "" || cart.length > 0) {
+      for (let i = 0; i < cart.length; i++) {
+        const itemList = {
+          producto: cart[i].name,
+          referencia: cart[i].reference,
+          cantidad: cart[i].cant,
+        };
 
-      text_array.push(JSON.stringify(itemList).replace(/[""{}]/g, "") + "\n");
+        text_array.push(JSON.stringify(itemList).replace(/[""{}]/g, "") + "\n");
+      }
+
+      console.log(text_array);
+
+      text_encoded = encodeURIComponent(text_array).toWellFormed();
+
+      var url =
+        "https://wa.me/" + whatsappphonenumber + "/?text=" + text_encoded;
+
+      // Abrir la URL en una nueva ventana o pestaña del navegador
+      window.open(url);
+    } else {
+      setErr("La lista de cotización se encuentra vacía");
     }
-
-    console.log(text_array);
-
-    text_encoded = encodeURIComponent(text_array).toWellFormed();
-
-    var url = "https://wa.me/" + whatsappphonenumber + "/?text=" + text_encoded;
-
-    // Abrir la URL en una nueva ventana o pestaña del navegador
-    window.open(url);
   };
 
   return (
@@ -138,6 +144,9 @@ export const ListaProductos = () => {
           </Box>
         );
       })}
+      {cart.length === 0 && err.length > 0 && (
+        <span style={{ display: "block", margin: "10px" }}>{err}</span>
+      )}
       <div
         className="footer"
         style={{
