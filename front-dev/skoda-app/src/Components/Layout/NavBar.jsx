@@ -157,7 +157,7 @@ export const NavBar = () => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: "none", sm: "block" }, marginRight:60 }}
+              sx={{ display: { xs: "none", sm: "block" }, marginRight: 60 }}
             >
               <Link
                 to="/form"
@@ -165,7 +165,7 @@ export const NavBar = () => {
               ></Link>
               Autoskoda Grupo VW
             </Typography>
-      
+
             <IconButton size="large" aria-label="" color="inherit">
               <Badge color="error">
                 <NavLink
